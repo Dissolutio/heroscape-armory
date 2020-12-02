@@ -1,0 +1,71 @@
+.jandar-frame {
+  border: 1px solid var(--jandar);
+  box-shadow: inset 0px 0px 1rem 0.1rem var(--jandar);
+  &:focus {
+    box-shadow: 1px 1px 1rem 0.3rem var(--jandar);
+  }
+}
+.ullar-frame {
+  border: 1px solid var(--ullar);
+  box-shadow: inset 0px 0px 1rem 0.1rem var(--ullar);
+  &:focus {
+    box-shadow: 1px 1px 1rem 0.3rem var(--ullar);
+  }
+}
+.einar-frame {
+  border: 1px solid var(--einar);
+  box-shadow: inset 0px 0px 1rem 0.1rem var(--einar);
+  &:focus {
+    box-shadow: 1px 1px 1rem 0.3rem var(--einar);
+  }
+}
+.utgar-frame {
+  border: 1px solid var(--utgar);
+  box-shadow: inset 0px 0px 1rem 0.1rem var(--utgar);
+  &:focus {
+    box-shadow: 1px 1px 1rem 0.3rem var(--utgar);
+  }
+}
+.vydar-frame {
+  border: 1px solid var(--vydar);
+  box-shadow: inset 0px 0px 1rem 0.1rem var(--vydar);
+  &:focus {
+    box-shadow: 1px 1px 1rem 0.3rem var(--vydar);
+  }
+}
+.valkrill-frame {
+  border: 1px solid var(--valkrill);
+  box-shadow: inset 0px 0px 1rem 0.1rem var(--valkrill);
+  &:focus {
+    box-shadow: 1px 1px 1rem 0.3rem var(--valkrill);
+  }
+}
+.aquilla-frame {
+  border: 1px solid var(--aquilla);
+  box-shadow: inset 0px 0px 1rem 0.1rem var(--aquilla);
+  &:focus {
+    box-shadow: 1px 1px 1rem 0.3rem var(--aquilla);
+  }
+}
+
+.jandar-background-gradient {
+  background-image: linear-gradient(var(--black), var(--jandar), var(--black));
+}
+.ullar-background-gradient {
+  background-image: linear-gradient(var(--black), var(--ullar), var(--black));
+}
+.einar-background-gradient {
+  background-image: linear-gradient(var(--black), var(--einar), var(--black));
+}
+.utgar-background-gradient {
+  background-image: linear-gradient(var(--black), var(--utgar), var(--black));
+}
+.vydar-background-gradient {
+  background-image: linear-gradient(var(--black), var(--vydar), var(--black));
+}
+.valkrill-background-gradient {
+  background-image: linear-gradient(var(--black), var(--valkrill), var(--black));
+}
+.aquilla-background-gradient {
+  background-image: linear-gradient(var(--black), var(--aquillaDark), var(--black));
+}

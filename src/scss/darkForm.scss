@@ -1,0 +1,87 @@
+
+.dark-form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  background-color: var(--transparentBlack);
+  border-radius: 10px;
+  fieldset {
+    box-shadow: 2px 2px 1px darken(var(--black), 15%);
+    border: 1px solid var(--lightGray);
+    display: block;
+    padding: 5px 5px 5px 10px;
+    display: inline-block;
+    background-color: darken(var(--black), 3%);
+    border-radius: 2px;
+    legend {
+      border: solid 1px var(--lightGray);
+      background-color: darken(var(--black), 5%);
+      box-shadow: 2px 2px 1px darken(var(--black), 15%);
+      text-shadow: 2px 2px darken(var(--black), 15%);
+      color: var(--white);
+      padding: 4px 20px;
+      border-radius: 2px;
+      font-size: 1.1em;
+    }
+    .material-icons {
+      color: var(--black);
+      background-color: var(--lightGray);
+      position: relative;
+      left: 38px;
+      margin: 1px 1px 1px -38px;
+      top: 5px;
+      padding: 5px 6px 8px 6px;
+      border-radius: 2px 0 0 2px;
+    }
+    input[type="text"],
+    input[type="email"],
+    button[type="submit"],
+    input[type="password"] {
+      background-color: var(--transparentBlack);
+      border: 1px solid var(--lightGray);
+      padding: 8px 8px 8px 48px;
+      font-size: 1.1em;
+      margin: 5px 5px 5px 0;
+      box-shadow: 2px 2px 1px darken(var(--black), 15%);
+      text-shadow: 1px 1px darken(var(--black), 15%);
+      color: var(--white);
+      border-radius: 2px;
+      width: var(--input)-width;
+    }
+    button[type="submit"] {
+      margin: 5px;
+      padding: 8px;
+      &:hover {
+        text-align: center;
+        background-color: var(--lightGray);
+        cursor: pointer;
+      }
+    }
+    .radio {
+      display: block;
+      label {
+        cursor: pointer;
+        position: relative;
+        padding: 1rem;
+        font-size: 1.1em;
+        color: var(--white);
+      }
+      input[type="radio"] {
+        margin-left: 10px;
+      }
+    }
+
+    input[type="submit"] {
+      position: relative;
+      left: -2px;
+      width: var(--input)-width + 58px;
+      padding-left: 8px;
+    }
+
+    input:focus {
+      border-color: lighten(var(--lightGray), 30%);
+    }
+  }
+}
