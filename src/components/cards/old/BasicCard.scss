@@ -1,3 +1,22 @@
+%flex-column-nowrap {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-items: center;
+}
+.flex-column-nowrap {
+  @extend %flex-column-nowrap;
+}
+%flex-row-nowrap {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.flex-row-nowrap {
+  @extend %flex-row-nowrap;
+}
+
 .fullcard-wrapper {
   background-color: var(--darkGray);
   border-radius: 20px;

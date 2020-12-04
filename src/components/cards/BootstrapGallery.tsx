@@ -1,9 +1,10 @@
 import React from 'react'
-import CardDeck from 'react-bootstrap/CardDeck'
 import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import { ICoreHeroscapeCard } from '../../assets/coreHeroscapeCards'
 import { BootstrapArmyCard } from './BootstrapArmyCard'
-import { chunkArray } from '../../utils/chunk'
+import { BootstrapArmy } from './BootstrapArmy'
 
 interface Props {
   cards: ICoreHeroscapeCard[]
@@ -11,24 +12,19 @@ interface Props {
 
 export const BootstrapGallery = (props: Props) => {
   const { cards } = props
-  const width =
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth
-  const perChunk = Math.floor(width / 200)
-  const cardChunks = chunkArray(cards, perChunk)
+  // const cardChunks = chunkArray(cards, perChunk)
   return (
     <Container fluid>
-      {cardChunks.map((chunk, index) => (
-        <CardDeck key={index}>
-          <CardChunk cardChunk={chunk} />
-        </CardDeck>
-      ))}
+      <h2>Army</h2>
+      <BootstrapArmy />
+      <h2>Cards</h2>
+      <Row xl={6} lg={5} md={3} sm={2} xs={1}>
+        {cards.map((card) => (
+          <Col key={card.cardID}>
+            <BootstrapArmyCard card={card} />
+          </Col>
+        ))}
+      </Row>
     </Container>
   )
 }
-
-const CardChunk = ({ cardChunk }) =>
-  cardChunk.map((card) => {
-    return <BootstrapArmyCard key={card.hsCardID} card={card} />
-  })

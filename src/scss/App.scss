@@ -1,6 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Playfair+Display");
 
 .app-wrapper {
+  
+  --bs-primary: #0275d8; 
+  --bs-secondary: #6c757d; 
+  --bs-info: #5bc0de; 
+  --bs-success: #5cb85c; 
+  --bs-warning: #f0ad4e; 
+  --bs-danger: #dc3545; 
+  --bs-dark: #343a40; 
+  --bs-light: #f8f9fa; 
+
   --darkGray: rgb(49, 61, 66);
   --transparentGray: rgba(73, 91, 99, 0.9);
   --lightGray: #b9b8b4;
@@ -32,77 +42,17 @@
   --cardRange: #6b6867;
   --cardAttack: #e82b29;
   --cardDefense: #142134;
-  background-image: url(../assets/hs-logo-black.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: contain;
-  background-color: black;
-  width: 100%;
+  /*
+    Heroscape Logo Background
+    background-image: url(../assets/hs-logo-black.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: contain;
+    background-color: black;
+    */
   min-height: 100%;
   color: var(--white);
   text-align: center;
   font-family: "Playfair Display", serif;
-}
-.page-wrapper {
-  margin: 0 auto;
-  background-color: var(--transparentBlack);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-span,
-li {
-  font-family: "Playfair Display", serif;
-}
-
-p {
-  font-family: "Playfair Display", serif;
-}
-.password-forget-link {
-  color: var(--aquilla);
-}
-
-%big-text {
-  font-size: 2rem;
-}
-.big-text {
-  @extend %big-text;
-}
-%big-button {
-  width: 2rem;
-  height: 2rem;
-}
-.big-button {
-  @extend %big-button;
-}
-%small-button {
-  width: 1.4rem;
-  height: 1rem;
-}
-.small-button {
-  @extend %small-button;
-}
-
-%flex-column-nowrap {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-items: center;
-}
-.flex-column-nowrap {
-  @extend %flex-column-nowrap;
-}
-%flex-row-nowrap {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-}
-.flex-row-nowrap {
-  @extend %flex-row-nowrap;
 }

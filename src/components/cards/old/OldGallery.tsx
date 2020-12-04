@@ -13,7 +13,7 @@ export const OldGallery = (props: Props) => {
   return (
     <ul className="gallery-list-grid">
       {cards.map((card) => (
-        <OldGalleryCard key={card.hsCardID} card={card} />
+        <OldGalleryCard key={card.cardID} card={card} />
       ))}
     </ul>
   )

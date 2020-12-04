@@ -1,11 +1,13 @@
 import React from 'react'
-import styled from 'styled-components'
-import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
 import Badge from 'react-bootstrap/Badge'
-import { ICoreHeroscapeCard } from '../../assets/coreHeroscapeCards'
-import { Accordion } from 'react-bootstrap'
+import Accordion from 'react-bootstrap/Accordion'
 import Button from 'react-bootstrap/Button'
+
+import { ICoreHeroscapeCard } from '../../assets/coreHeroscapeCards'
+import { useUIContext } from 'hooks/useUIContext'
+import { useArmySelectContext } from 'hooks/useArmySelectContext'
 
 interface Props {
   card: ICoreHeroscapeCard
@@ -14,7 +16,7 @@ interface Props {
 export const BootstrapArmyCard = (props: Props) => {
   const { card } = props
   const {
-    name,
+    name: cardName,
     image,
     // general,
     race,
@@ -32,60 +34,141 @@ export const BootstrapArmyCard = (props: Props) => {
     // hexes,
     // setWave,
   } = card
-
+  const { darkMode, darkModeBSClassNames } = useUIContext()
+  const { army, addCardToArmy, removeCardFromArmy } = useArmySelectContext()
+  const isInArmy = (card: ICoreHeroscapeCard): boolean => {
+    return army.some((c) => c.cardID === card.cardID)
+  }
+  const addClickHandler = (card: ICoreHeroscapeCard) => {
+    console.log(`${card.name} in army:`, isInArmy(card))
+    addCardToArmy(card)
+  }
+  const removeClickHandler = (card: ICoreHeroscapeCard) => {
+    console.log(`${card.name} in army:`, isInArmy(card))
+    removeCardFromArmy(card)
+  }
   return (
-    <Card
-      key={card.name}
-      bg={'dark'}
-      className="mb-2"
-      style={{ width: '130px' }}
-    >
-      <Card.Header>{card.name}</Card.Header>
+    <Card key={cardName} className={`mb-2 ${darkModeBSClassNames}`}>
+      <Card.Header className={darkModeBSClassNames}>{cardName}</Card.Header>
       <Card.Body>
         <Card.Img
+          variant="top"
           src={`/heroscape-portraits/${image}`}
           style={{ height: 'auto', width: '100px' }}
+          className="shadow-lg"
         />
         <Card.Text>
-          <Badge variant="dark">{points} points</Badge>
+          <Badge
+            variant={darkMode ? 'dark' : 'light'}
+            style={{ textTransform: 'capitalize' }}
+          >
+            <span className="small">{type}</span>
+          </Badge>
         </Card.Text>
-        {/* 
-        <Accordion>
-          <Card>
-            <Card.Header>
-              <Accordion.Toggle as={Button} eventKey="0">
-                Click me!
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="0">
-              <Card.Body>Hello! I'm the body</Card.Body>
-            </Accordion.Collapse>
-          </Card>
-          <Card>
-            <Card.Header>
-              <Accordion.Toggle as={Button} eventKey="1">
-                Click me!
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="1">
-              <Card.Body>Hello! I'm another body</Card.Body>
-            </Accordion.Collapse>
-          </Card>
-        </Accordion> */}
+        <Card.Text className="mt-1 mb-2">
+          <Badge variant="warning" className="p-1">
+            {points}
+          </Badge>
+          <span className="small text-warning">{` points`}</span>
+        </Card.Text>
+        {type.includes('hero') && (
+          <Card.Text className="mt-2 mb-2">
+            <Badge className="p-2" variant="danger">
+              {life}
+              {` Life `}
+            </Badge>
+          </Card.Text>
+        )}
 
-        <Card.Text>{type}</Card.Text>
-        <Card.Text>{cardClass}</Card.Text>
-        <Card.Text>{personality}</Card.Text>
-        <Card.Text>{race}</Card.Text>
-        <Card.Text>Life: {life}</Card.Text>
-        <Card.Text>Range: {range}</Card.Text>
-        <Card.Text>Move: {move}</Card.Text>
-        <Card.Text>Attack: {attack}</Card.Text>
-        <Card.Text>Defense: {defense}</Card.Text>
-        <Card.Text>
-          Height: {height.split(' ')[1]} {height.split(' ')[0]}
+        <Card.Text className="mt-2 mb-2">
+          <Badge
+            className="mr-1 p-1"
+            variant="light"
+            style={{ textTransform: 'capitalize' }}
+          >
+            {race}
+          </Badge>
+          <Badge
+            className="mr-1 p-1"
+            variant="light"
+            style={{ textTransform: 'capitalize' }}
+          >
+            {cardClass}
+          </Badge>
+          <Badge
+            className="mr-1 p-1"
+            variant="light"
+            style={{ textTransform: 'capitalize' }}
+          >
+            {`${personality}`}
+          </Badge>
         </Card.Text>
+
+        <Card.Text className="d-flex mt-2 mb-2">
+          <Badge className="p-2 mr-2 flex-fill" variant="success">
+            Move: {move}
+          </Badge>
+          <Badge className="p-2 flex-fill" variant="secondary">
+            Range: {range}
+          </Badge>
+        </Card.Text>
+        <Card.Text className="d-flex mt-2 mb-2">
+          <Badge className="flex-fill p-2 mr-2" variant="danger">
+            Attack: {attack}
+          </Badge>
+          <Badge className="flex-fill p-2" variant="primary">
+            Defense: {defense}
+          </Badge>
+        </Card.Text>
+        <Card.Text className="mt-2 mb-4">
+          <Badge className="p-2" variant="info">
+            Height: {height.split(' ')[1]} {height.split(' ')[0]}
+          </Badge>
+        </Card.Text>
+
+        <AbilitiesAccordion card={card} />
+        <Button
+          variant="outline-success"
+          className="btn-block mt-3"
+          onClick={() => addClickHandler(card)}
+        >
+          Add to Army
+        </Button>
+        <Button
+          variant="outline-warning"
+          className="btn-block mt-2 mb-2"
+          onClick={() => removeClickHandler(card)}
+        >
+          Remove from Army
+        </Button>
       </Card.Body>
     </Card>
+  )
+}
+const AbilitiesAccordion = (props: { card: ICoreHeroscapeCard }) => {
+  const { darkMode } = useUIContext()
+  return (
+    <Accordion>
+      {props.card.abilities.map((ability, index) => {
+        const eventKey = `${index}`
+        return (
+          <Container key={eventKey}>
+            <Accordion.Toggle
+              as={Button}
+              variant={darkMode ? 'secondary' : 'light'}
+              eventKey={eventKey}
+              size="sm"
+              style={{ textDecoration: 'underline' }}
+              className="btn-block m-1 font-weight-bolder"
+            >
+              {ability.name}
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey={eventKey}>
+              <Card.Text className="p-2">{ability.desc}</Card.Text>
+            </Accordion.Collapse>
+          </Container>
+        )
+      })}
+    </Accordion>
   )
 }

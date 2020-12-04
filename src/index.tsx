@@ -11,9 +11,9 @@ import {
   useAuthListener,
 } from './firebase'
 import { UIContextProvider } from './hooks/useUIContext'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './scss/index.scss'
 import 'normalize.css'
+import './scss/index.scss'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const firebaseApp = new Firebase()
 
@@ -39,9 +39,4 @@ const AuthContextWrapper = () => {
   )
 }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <FirebaseContextWrapper />
-  </React.StrictMode>,
-  document.getElementById('root'),
-)
+ReactDOM.render(<FirebaseContextWrapper />, document.getElementById('root'))
