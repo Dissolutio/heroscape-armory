@@ -11,7 +11,6 @@ import {
   useAuthListener,
 } from './firebase'
 import { UIContextProvider } from './hooks/useUIContext'
-import 'normalize.css'
 import './scss/index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
