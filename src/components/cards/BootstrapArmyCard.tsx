@@ -1,6 +1,5 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
-import Container from 'react-bootstrap/Container'
 import Badge from 'react-bootstrap/Badge'
 import Accordion from 'react-bootstrap/Accordion'
 import Button from 'react-bootstrap/Button'

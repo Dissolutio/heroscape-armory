@@ -1,12 +1,9 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container'
 
-import { ArmySelectContextProvider } from 'hooks/useArmySelectContext'
 import { UIContextProvider, useUIContext } from 'hooks/useUIContext'
-import { BootstrapGallery } from './components/cards/BootstrapGallery'
-import './scss/heroscapeFactionStyles.scss'
+import { ArmySelectContextProvider } from 'hooks/useArmySelectContext'
 import { ArmyCardGallery } from './components/cards/ArmyCardGallery'
-import { BootstrapArmy } from './components/cards/BootstrapArmy'
+import './scss/heroscapeFactionStyles.scss'
 
 const App = () => {
   return (
@@ -29,8 +26,6 @@ const GalleryPage = () => {
       >
         Heroscape Armory
       </h1>
-      <BootstrapArmy />
-      {/* <BootstrapGallery cards={coreHeroscapeCards} /> */}
       <ArmyCardGallery />
     </div>
   )
