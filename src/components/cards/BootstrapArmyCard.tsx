@@ -9,11 +9,7 @@ import { ICoreHeroscapeCard } from '../../assets/coreHeroscapeCards'
 import { useUIContext } from 'hooks/useUIContext'
 import { useArmySelectContext } from 'hooks/useArmySelectContext'
 
-interface Props {
-  card: ICoreHeroscapeCard
-}
-
-export const BootstrapArmyCard = (props: Props) => {
+export const BootstrapArmyCard = (props: { card: ICoreHeroscapeCard }) => {
   const { card } = props
   const {
     name: cardName,
@@ -152,7 +148,7 @@ const AbilitiesAccordion = (props: { card: ICoreHeroscapeCard }) => {
       {props.card.abilities.map((ability, index) => {
         const eventKey = `${index}`
         return (
-          <Container key={eventKey}>
+          <div key={index}>
             <Accordion.Toggle
               as={Button}
               variant={darkMode ? 'secondary' : 'light'}
@@ -166,7 +162,7 @@ const AbilitiesAccordion = (props: { card: ICoreHeroscapeCard }) => {
             <Accordion.Collapse eventKey={eventKey}>
               <Card.Text className="p-2">{ability.desc}</Card.Text>
             </Accordion.Collapse>
-          </Container>
+          </div>
         )
       })}
     </Accordion>

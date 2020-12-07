@@ -3,9 +3,10 @@ import Container from 'react-bootstrap/Container'
 
 import { ArmySelectContextProvider } from 'hooks/useArmySelectContext'
 import { UIContextProvider, useUIContext } from 'hooks/useUIContext'
-import { coreHeroscapeCards } from './assets/coreHeroscapeCards'
 import { BootstrapGallery } from './components/cards/BootstrapGallery'
 import './scss/heroscapeFactionStyles.scss'
+import { ArmyCardGallery } from './components/cards/ArmyCardGallery'
+import { BootstrapArmy } from './components/cards/BootstrapArmy'
 
 const App = () => {
   return (
@@ -18,17 +19,20 @@ const App = () => {
 }
 
 const GalleryPage = () => {
-  const { darkMode, darkModeBSClassNames } = useUIContext()
-  const bgColor = darkMode ? 'var(--black)' : ''
+  const { darkMode, darkModeBSClassNames, toggleDarkMode } = useUIContext()
+  const bgColor = darkMode ? 'var(--bs-dark)' : 'var(--bs-light)'
   return (
-    <Container
-      fluid
-      className={`app-wrapper`}
-      style={{ backgroundColor: bgColor }}
-    >
-      <h1 className={`header p-4 ${darkModeBSClassNames}`}>Heroscape Armory</h1>
-      <BootstrapGallery cards={coreHeroscapeCards} />
-    </Container>
+    <div style={{ minHeight: '100vh', backgroundColor: bgColor }}>
+      <h1
+        onClick={toggleDarkMode}
+        className={`header p-4 text-center ${darkModeBSClassNames}`}
+      >
+        Heroscape Armory
+      </h1>
+      <BootstrapArmy />
+      {/* <BootstrapGallery cards={coreHeroscapeCards} /> */}
+      <ArmyCardGallery />
+    </div>
   )
 }
 
