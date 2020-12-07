@@ -11,8 +11,8 @@ import {
   useAuthListener,
 } from './firebase'
 import { UIContextProvider } from './hooks/useUIContext'
-import './scss/index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './scss/index.scss'
 
 const firebaseApp = new Firebase()
 

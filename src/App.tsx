@@ -5,7 +5,6 @@ import { ArmySelectContextProvider } from 'hooks/useArmySelectContext'
 import { UIContextProvider, useUIContext } from 'hooks/useUIContext'
 import { coreHeroscapeCards } from './assets/coreHeroscapeCards'
 import { BootstrapGallery } from './components/cards/BootstrapGallery'
-import './scss/App.scss'
 import './scss/heroscapeFactionStyles.scss'
 
 const App = () => {
