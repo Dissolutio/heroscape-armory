@@ -2,31 +2,35 @@ import React from 'react'
 
 import { UIContextProvider, useUIContext } from 'hooks/useUIContext'
 import { ArmySelectContextProvider } from 'hooks/useArmySelectContext'
-import { ArmyCardGallery } from './components/cards/ArmyCardGallery'
+import { DeckContextProvider } from 'hooks/useDeckContext'
+import { NavBar } from './components/layout/NavBar'
+import { DraftGallery } from './components/cards/DraftGallery'
 import './scss/heroscapeFactionStyles.scss'
+import { DraftArmy } from './components/cards/DraftArmy'
+import { coreHeroscapeCards } from 'assets/coreHeroscapeCards'
+import { FilterSettings } from 'components/cards/FilterSettings'
 
 const App = () => {
   return (
     <UIContextProvider>
-      <ArmySelectContextProvider>
-        <GalleryPage />
-      </ArmySelectContextProvider>
+      <DeckContextProvider>
+        <ArmySelectContextProvider>
+          <GalleryPage />
+        </ArmySelectContextProvider>
+      </DeckContextProvider>
     </UIContextProvider>
   )
 }
 
 const GalleryPage = () => {
-  const { darkMode, darkModeBSClassNames, toggleDarkMode } = useUIContext()
-  const bgColor = darkMode ? 'var(--bs-dark)' : 'var(--bs-light)'
+  const { darkMode } = useUIContext()
+  const bgColor = darkMode ? 'var(--black)' : 'var(--white)'
   return (
     <div style={{ minHeight: '100vh', backgroundColor: bgColor }}>
-      <h1
-        onClick={toggleDarkMode}
-        className={`header p-4 text-center ${darkModeBSClassNames}`}
-      >
-        Heroscape Armory
-      </h1>
-      <ArmyCardGallery />
+      <NavBar />
+      <DraftArmy cards={coreHeroscapeCards} />
+      <FilterSettings />
+      <DraftGallery />
     </div>
   )
 }
