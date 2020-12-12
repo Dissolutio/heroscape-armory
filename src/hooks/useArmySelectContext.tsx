@@ -10,7 +10,7 @@ const useArmySelectContext = () => {
     ...useContext(ArmySelectContext),
   }
 }
-interface ArmyDraftCard {
+export interface ArmyDraftCard {
   cardID: string
   count: number
 }
@@ -24,7 +24,13 @@ type ArmySelectContextValue = {
 }
 
 const ArmySelectContextProvider: React.FC = (props) => {
-  const [army, setArmy] = useState([])
+  const [army, setArmy] = useState([
+    { cardID: 'hs1014', count: 1 },
+    { cardID: 'hs1015', count: 1 },
+    { cardID: 'hs1016', count: 3 },
+    { cardID: 'hs1103', count: 1 },
+    { cardID: 'hs1104', count: 1 },
+  ])
 
   const addCardToArmy = (card: ICoreHeroscapeCard) => {
     setArmy((army) => {
@@ -75,7 +81,7 @@ const ArmySelectContextProvider: React.FC = (props) => {
       }
       // or decrement card
       return newArmy.map((c) => {
-        if (c.name !== cardID) {
+        if (c.cardID !== cardID) {
           return { ...c, count: newCount }
         }
         return c

@@ -3,7 +3,7 @@ export interface ICoreHeroscapeCard {
 	cardID: string
 	image: string
 	portraitPattern: string
-	general: string
+	general: 'jandar' | 'utgar' | 'ullar' | 'vydar' | 'einar' | 'aquilla' | 'valkrill'
 	race: string
 	type: string
 	cardClass: string
