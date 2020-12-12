@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAuthUserContext, useFirebaseContext } from '../../firebase'
+import { useAuthUserContext, useFirebaseContext } from '.'
 
 const CurrentUserReadout = () => {
     const firebaseApp = useFirebaseContext()
