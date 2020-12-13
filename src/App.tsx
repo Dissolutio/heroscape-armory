@@ -4,11 +4,9 @@ import { UIContextProvider, useUIContext } from 'hooks/useUIContext'
 import { ArmySelectContextProvider } from 'hooks/useArmySelectContext'
 import { DeckContextProvider } from 'hooks/useDeckContext'
 import { NavBar } from './components/layout/NavBar'
-import { DraftGallery } from './components/cards/DraftGallery'
+import { GalleryList } from './components/cards/GalleryList'
 import './scss/heroscapeFactionStyles.scss'
 import { DraftArmy } from './components/cards/DraftArmy'
-import { coreHeroscapeCards } from 'assets/coreHeroscapeCards'
-import { FilterSettings } from 'components/cards/FilterSettings'
 
 const App = () => {
   return (
@@ -24,13 +22,12 @@ const App = () => {
 
 const GalleryPage = () => {
   const { darkMode } = useUIContext()
-  const bgColor = darkMode ? 'var(--black)' : 'var(--white)'
+  const bgColor = darkMode ? 'var(--black)' : 'var(--secondary)'
   return (
     <div style={{ minHeight: '100vh', backgroundColor: bgColor }}>
       <NavBar />
-      <DraftArmy cards={coreHeroscapeCards} />
-      <FilterSettings />
-      <DraftGallery />
+      <DraftArmy />
+      <GalleryList />
     </div>
   )
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import { FixedSizeList as List } from 'react-window'
 import Card from 'react-bootstrap/Card'
 import Badge from 'react-bootstrap/Badge'
 import Tab from 'react-bootstrap/Tab'
@@ -7,63 +6,11 @@ import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
 
 import { useUIContext } from 'hooks/useUIContext'
-import { useDeckContext } from 'hooks/useDeckContext'
 import { useArmySelectContext } from 'hooks/useArmySelectContext'
 import { CardGridStyle } from './CardGridStyle'
 import { ICoreHeroscapeCard } from 'assets/coreHeroscapeCards'
 
-export const DraftGallery = () => {
-  const { filteredDeck } = useDeckContext()
-  const { darkModeBSClassNames } = useUIContext()
-  return (
-    <div
-      style={{
-        // maxWidth: '600px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-      }}
-    >
-      <h2 className={`text-center ${darkModeBSClassNames}`}>
-        Gallery{' '}
-        <span className="text-warning small">{filteredDeck.length} items</span>
-      </h2>
-      <List
-        // useIsScrolling
-        height={600}
-        className={`${darkModeBSClassNames}`}
-        itemCount={filteredDeck.length}
-        itemSize={360}
-        itemData={filteredDeck}
-        width={'100%'}
-      >
-        {ListItemRenderer}
-      </List>
-    </div>
-  )
-}
-
-const ListItemRenderer = ({
-  data,
-  // isScrolling,
-  index,
-  style,
-}) => {
-  const card = data[index]
-  // if (isScrolling) {
-  //   return <div style={style}>Scrolling.....</div>
-  // }
-  return (
-    <div style={style}>
-      {card && card?.name ? (
-        <GalleryArmyCard card={card} />
-      ) : (
-        <div>Loading</div>
-      )}
-    </div>
-  )
-}
-
-const GalleryArmyCard = (props) => {
+export const GalleryArmyCard = (props) => {
   const card: ICoreHeroscapeCard = props.card
   const { army, addCardToArmy, removeCardFromArmy } = useArmySelectContext()
   const { darkModeBSClassNames } = useUIContext()
@@ -79,9 +26,9 @@ const GalleryArmyCard = (props) => {
     removeCardFromArmy(card)
   }
   return (
-    <Card key={card.name} className={`${darkModeBSClassNames}`}>
+    <Card key={card.name} className={`p-2 ${darkModeBSClassNames}`}>
       <Card.Header
-        className={`${darkModeBSClassNames} border-white border-top border-bottom`}
+        className={`${darkModeBSClassNames}  ${card.general}-background-gradient border-white border-top border-bottom`}
       >
         {card.name}
       </Card.Header>
@@ -95,7 +42,10 @@ const GalleryArmyCard = (props) => {
           </div>
 
           <div className="g2">
-            <Badge className="d-block" style={{ textTransform: 'capitalize' }}>
+            <Badge
+              className={`d-block`}
+              style={{ textTransform: 'capitalize' }}
+            >
               <span className="small">{card.type}</span>
             </Badge>
             <div>

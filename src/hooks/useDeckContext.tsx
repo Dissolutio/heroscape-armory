@@ -9,29 +9,45 @@ export const DeckContext = React.createContext<Partial<DeckContextValue>>({
 })
 
 interface CardFilter {
-  fields: 'all' | 'name' | 'general'
+  fields: 'all' | 'general'
   value: string
 }
 
 interface DeckContextValue {
   filters: CardFilter[]
   setFilters: React.Dispatch<React.SetStateAction<CardFilter[]>>
+  deck: ICoreHeroscapeCard[]
   filteredDeck: ICoreHeroscapeCard[]
   addFilter: (text: string, fields: string) => void
 }
 
-const DeckContextProvider = (props) => {
+const DeckContextProvider = (props: { children: React.ReactNode }) => {
   const [filters, setFilters] = useState([])
+  const [deck, setDeck] = useState(coreHeroscapeCards)
+
   const filteredDeck = filters.reduce((prev, filter) => {
     return runFilterOnCards(filter, prev)
-  }, coreHeroscapeCards)
+  }, deck)
+
   const addFilter = (text: string, fields: string) => {
-    setFilters((state) => [...state, { fields, value: text }])
+    setFilters((state) => {
+      const newState = [...state]
+      const oldFilterIndex = state.findIndex((f) => f.fields === fields)
+      const hasOldFilter = oldFilterIndex >= 0
+      const newFilter = { fields, value: text }
+      if (hasOldFilter) {
+        newState[oldFilterIndex] = newFilter
+      } else {
+        newState.push(newFilter)
+      }
+      return newState
+    })
   }
 
   const ctxValue = {
     filters,
     setFilters,
+    deck,
     filteredDeck,
     addFilter,
   }
@@ -48,6 +64,7 @@ const useDeckContext = () => {
 
 export { DeckContextProvider, useDeckContext }
 
+// FILTER FUNCTION
 const runFilterOnCards = (filter: CardFilter, cards: ICoreHeroscapeCard[]) => {
   const { fields, value } = filter
   const regexp = new RegExp(`${value}`, 'i')
@@ -68,8 +85,6 @@ const runFilterOnCards = (filter: CardFilter, cards: ICoreHeroscapeCard[]) => {
         .concat(cardsByPersonality)
         .concat(cardsByAbilities)
         .filter(makeArrayUnique)
-    case 'name':
-      return cardsByName.filter(makeArrayUnique)
     case 'general':
       return cardsByGeneral.filter(makeArrayUnique)
     default:

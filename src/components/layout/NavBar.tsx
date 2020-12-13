@@ -1,10 +1,6 @@
 import React from 'react'
-import { BsSearch } from 'react-icons/bs'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
-import InputGroup from 'react-bootstrap/InputGroup'
 
 import { useUIContext } from 'hooks/useUIContext'
 
@@ -33,25 +29,6 @@ export const NavBar = () => {
               <Nav.Link href="#">Toggle Dark Mode</Nav.Link>
             </Nav.Item>
           </Nav>
-          <Form inline>
-            <InputGroup size="sm" className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text
-                  className={darkModeBSClassNames}
-                  id="inputGroup-sizing-sm"
-                >
-                  <BsSearch />
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl
-                aria-label="Small"
-                aria-describedby="inputGroup-sizing-sm"
-                type="text"
-                placeholder="Search"
-                className="mr-sm-2"
-              />
-            </InputGroup>
-          </Form>
         </Navbar.Collapse>
       </Navbar>
     </div>
