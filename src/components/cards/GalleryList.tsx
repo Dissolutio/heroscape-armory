@@ -7,7 +7,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 import { useUIContext } from 'hooks/useUIContext'
 import { useDeckContext } from 'hooks/useDeckContext'
 import { SearchConsole } from './SearchConsole'
-import { GalleryArmyCard } from './GalleryCard'
+import { ReactWindowFixedSizeList } from './ReactWindowFixedSizeList'
 
 export const GalleryList = () => {
   const { filteredDeck } = useDeckContext()
@@ -22,39 +22,8 @@ export const GalleryList = () => {
         <SearchConsole />
       </Jumbotron>
       <Container className={`${darkModeBSClassNames} mt-2 mb-2`}>
-        <List
-          // useIsScrolling
-          height={600}
-          // className={`${darkModeBSClassNames}`}
-          itemCount={filteredDeck.length}
-          itemSize={400}
-          itemData={filteredDeck}
-          width={'100%'}
-        >
-          {ListItemRenderer}
-        </List>
+        <ReactWindowFixedSizeList />
       </Container>
     </Container>
-  )
-}
-
-const ListItemRenderer = ({
-  data,
-  // isScrolling,
-  index,
-  style,
-}) => {
-  const card = data[index]
-  // if (isScrolling) {
-  //   return <div style={style}>Scrolling.....</div>
-  // }
-  return (
-    <div style={style} className={`${card.general}-frame`}>
-      {card && card?.name ? (
-        <GalleryArmyCard card={card} />
-      ) : (
-        <div>Loading</div>
-      )}
-    </div>
   )
 }
