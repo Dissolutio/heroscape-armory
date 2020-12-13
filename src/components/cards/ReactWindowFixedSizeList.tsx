@@ -8,7 +8,6 @@ export const ReactWindowFixedSizeList = () => {
   const { filteredDeck } = useDeckContext()
   return (
     <List
-      // useIsScrolling
       height={600}
       itemCount={filteredDeck.length}
       itemSize={400}
@@ -20,16 +19,8 @@ export const ReactWindowFixedSizeList = () => {
   )
 }
 
-const ListItemRenderer = ({
-  data,
-  // isScrolling,
-  index,
-  style,
-}) => {
+const ListItemRenderer = ({ data, index, style }) => {
   const card = data[index]
-  // if (isScrolling) {
-  //   return <div style={style}>Scrolling.....</div>
-  // }
   return (
     <div style={style} className={`${card.general}-frame`}>
       {card && card?.name ? (
