@@ -4,9 +4,9 @@ import { UIContextProvider, useUIContext } from 'hooks/useUIContext'
 import { ArmySelectContextProvider } from 'hooks/useArmySelectContext'
 import { DeckContextProvider } from 'hooks/useDeckContext'
 import { NavBar } from './components/layout/NavBar'
-import { GalleryList } from './components/cards/GalleryList'
+import { GalleryList } from './components/GalleryList'
 import './scss/heroscapeFactionStyles.scss'
-import { DraftArmy } from './components/cards/DraftArmy'
+import { DraftArmy } from './components/DraftArmy'
 
 const App = () => {
   return (

@@ -2,7 +2,7 @@ import React from 'react'
 import { FixedSizeList as List } from 'react-window'
 
 import { useDeckContext } from 'hooks/useDeckContext'
-import { GalleryArmyCard } from './GalleryCard'
+import { GalleryCard } from './GalleryCard'
 
 export const ReactWindowFixedSizeList = () => {
   const { filteredDeck } = useDeckContext()
@@ -22,12 +22,8 @@ export const ReactWindowFixedSizeList = () => {
 const ListItemRenderer = ({ data, index, style }) => {
   const card = data[index]
   return (
-    <div style={style} className={`${card.general}-frame`}>
-      {card && card?.name ? (
-        <GalleryArmyCard card={card} />
-      ) : (
-        <div>Loading</div>
-      )}
+    <div style={style} className={`p-1`}>
+      {card && card?.name ? <GalleryCard card={card} /> : <div>Loading</div>}
     </div>
   )
 }

@@ -1,5 +1,6 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button'
+import Badge from 'react-bootstrap/Badge'
 
 import { useUIContext } from 'hooks/useUIContext'
 import { useDeckContext } from 'hooks/useDeckContext'
@@ -9,69 +10,69 @@ export const HSFactionSearchButtons = () => {
   const { darkMode } = useUIContext()
   return (
     <>
-      <Button
+      <Badge
         variant={`${darkMode ? 'dark' : 'light'} `}
         className={`m-1`}
-        size="sm"
-        style={{ borderWidth: '3px', borderColor: 'var(--valkrill)' }}
+        as={Button}
+        style={{ backgroundColor: 'var(--valkrill)' }}
         onClick={() => setFilters([{ value: 'valkrill', fields: 'general' }])}
       >
         VALKRILL
-      </Button>
-      <Button
+      </Badge>
+      <Badge
         variant={`${darkMode ? 'dark' : 'light'} `}
         className={`m-1`}
-        size="sm"
-        style={{ borderWidth: '3px', borderColor: 'var(--jandar)' }}
+        as={Button}
+        style={{ backgroundColor: 'var(--jandar)' }}
         onClick={() => setFilters([{ value: 'jandar', fields: 'general' }])}
       >
         JANDAR
-      </Button>
-      <Button
+      </Badge>
+      <Badge
         variant={`${darkMode ? 'dark' : 'light'} `}
         className={`m-1`}
-        size="sm"
-        style={{ borderWidth: '3px', borderColor: 'var(--ullar)' }}
+        as={Button}
+        style={{ backgroundColor: 'var(--ullar)' }}
         onClick={() => setFilters([{ value: 'ullar', fields: 'general' }])}
       >
         ULLAR
-      </Button>
-      <Button
+      </Badge>
+      <Badge
         variant={`${darkMode ? 'dark' : 'light'} `}
         className={`m-1`}
-        size="sm"
-        style={{ borderWidth: '3px', borderColor: 'var(--vydar)' }}
+        as={Button}
+        style={{ backgroundColor: 'var(--vydar)' }}
         onClick={() => setFilters([{ value: 'vydar', fields: 'general' }])}
       >
         VYDAR
-      </Button>
-      <Button
+      </Badge>
+      <Badge
         variant={`${darkMode ? 'dark' : 'light'} `}
         className={`m-1`}
-        size="sm"
-        style={{ borderWidth: '3px', borderColor: 'var(--einar)' }}
+        as={Button}
+        style={{ backgroundColor: 'var(--einar)' }}
         onClick={() => setFilters([{ value: 'einar', fields: 'general' }])}
       >
         EINAR
-      </Button>
-      <Button
+      </Badge>
+      <Badge
         variant={`${darkMode ? 'dark' : 'light'} `}
         className={`m-1`}
-        size="sm"
-        style={{ borderWidth: '3px', borderColor: 'var(--utgar)' }}
+        as={Button}
+        style={{ backgroundColor: 'var(--utgar)' }}
         onClick={() => setFilters([{ value: 'utgar', fields: 'general' }])}
       >
         UTGAR
-      </Button>
-      <Button
+      </Badge>
+      <Badge
         variant={`${darkMode ? 'dark' : 'light'} `}
         className={`m-1`}
-        size="sm"
-        style={{ borderWidth: '3px', borderColor: 'var(--aquilla)' }}
+        as={Button}
+        style={{ backgroundColor: 'var(--aquilla)' }}
         onClick={() => setFilters([{ value: 'aquilla', fields: 'general' }])}
       >
         AQUILLA
-      </Button>
+      </Badge>
     </>
   )
 }

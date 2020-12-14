@@ -4,7 +4,7 @@ import Badge from 'react-bootstrap/Badge'
 import Accordion from 'react-bootstrap/Accordion'
 import Button from 'react-bootstrap/Button'
 
-import { ICoreHeroscapeCard } from '../../assets/coreHeroscapeCards'
+import { ICoreHeroscapeCard } from '../assets/coreHeroscapeCards'
 import { useUIContext } from 'hooks/useUIContext'
 import { useArmySelectContext } from 'hooks/useArmySelectContext'
 

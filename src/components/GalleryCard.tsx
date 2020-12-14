@@ -10,7 +10,7 @@ import { useArmySelectContext } from 'hooks/useArmySelectContext'
 import { CardGridStyle } from './CardGridStyle'
 import { ICoreHeroscapeCard } from 'assets/coreHeroscapeCards'
 
-export const GalleryArmyCard = (props) => {
+export const GalleryCard = (props) => {
   const card: ICoreHeroscapeCard = props.card
   const { army, addCardToArmy, removeCardFromArmy } = useArmySelectContext()
   const { darkModeBSClassNames } = useUIContext()
@@ -18,21 +18,19 @@ export const GalleryArmyCard = (props) => {
     return army.some((c) => c.cardID === card.cardID)
   }
   const addClickHandler = (card: ICoreHeroscapeCard) => {
-    console.log(`${card.name} in army:`, isInArmy(card))
     addCardToArmy(card)
   }
   const removeClickHandler = (card: ICoreHeroscapeCard) => {
-    console.log(`${card.name} in army:`, isInArmy(card))
     removeCardFromArmy(card)
   }
   return (
-    <Card key={card.name} className={`p-2 ${darkModeBSClassNames}`}>
+    <Card key={card.name} className={`${darkModeBSClassNames} mb-3 mt-3`}>
       <Card.Header
-        className={`${darkModeBSClassNames}  ${card.general}-background-gradient border-white border-top border-bottom`}
+        className={`${card.general}-background-gradient ${card.general}-frame border-0`}
       >
         {card.name}
       </Card.Header>
-      <Card.Body>
+      <Card.Body className={`${card.general}-frame`}>
         <CardGridStyle>
           <div className="g1">
             <Card.Img

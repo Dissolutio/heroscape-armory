@@ -20,13 +20,10 @@ export const SearchConsole = () => {
 
   return (
     <Container className={`${darkModeBSClassNames} mt-2 mb-2`}>
-      <Container className={`${darkModeBSClassNames} p-2`}>
-        <BootstrapSearchBarWithIcon
-          onSubmit={handleAddFilterSubmit}
-          searchId={searchId}
-        />
-        <HSFactionSearchButtons />
-      </Container>
+      <BootstrapSearchBarWithIcon
+        onSubmit={handleAddFilterSubmit}
+        searchId={searchId}
+      />
     </Container>
   )
 }
@@ -49,6 +46,7 @@ const BootstrapSearchBarWithIcon = ({ onSubmit, searchId }) => {
           className="mr-sm-2"
         />
       </InputGroup>
+      <HSFactionSearchButtons />
     </Form>
   )
 }
