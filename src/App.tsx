@@ -7,6 +7,7 @@ import { NavBar } from './components/layout/NavBar'
 import { GalleryList } from './components/GalleryList'
 import './scss/heroscapeFactionStyles.scss'
 import { DraftArmy } from './components/DraftArmy'
+import ModalDisplay from './components/ModalDisplay'
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const GalleryPage = () => {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: bgColor }}>
       <NavBar />
+      <ModalDisplay />
       <DraftArmy />
       <GalleryList />
     </div>

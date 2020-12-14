@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Playfair+Display");
 
+html {
+  height: -webkit-fill-available;
+}
 body {
   --bs-primary: #0275d8; 
   --bs-secondary: #6c757d; 
@@ -54,8 +57,4 @@ body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
   font-family: "Playfair Display", serif;
-}
-
-html {
-  height: -webkit-fill-available;
 }

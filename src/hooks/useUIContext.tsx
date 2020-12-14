@@ -1,22 +1,34 @@
 import React, { useContext, useState } from 'react'
+import { CardAbility } from 'assets/coreHeroscapeCards'
 
 export const UIContext = React.createContext<Partial<UIContextValue>>(null)
+
+export const modalStates = { off: 'off', ability: 'ability' }
 
 type UICtxState = {
   menuOpen: boolean
   darkMode: boolean
+  modalState: string
+  modalAbility: CardAbility
 }
 
 interface UIContextValue extends UICtxState {
   toggleDarkMode: () => void
-  toggleMenuOpen: () => void
   darkModeBSClassNames: string
+  toggleMenuOpen: () => void
+  closeModal: () => void
+  openModalAbility: (ability: CardAbility) => void
 }
 
 const UIContextProvider = (props) => {
   const [clientState, setClientState] = useState({
     menuOpen: false,
     darkMode: true,
+    modalState: modalStates.off,
+    modalAbility: {
+      name: 'The Ability',
+      desc: 'It rages and roils and toils till death do you part.',
+    },
   })
   const darkModeBSClassNames = `bg-${
     clientState.darkMode ? 'dark' : 'light'
@@ -33,12 +45,27 @@ const UIContextProvider = (props) => {
       }
     })
   }
+  const closeModal = () => {
+    setClientState((s) => ({ ...s, modalState: modalStates.off }))
+  }
+  const openModalAbility = (ability: CardAbility) => {
+    setClientState((s) => ({
+      ...s,
+      modalState: modalStates.ability,
+      modalAbility: ability,
+    }))
+  }
+
   const ctxValue = {
     darkMode: clientState.darkMode,
-    menuOpen: clientState.menuOpen,
-    darkModeBSClassNames,
-    toggleMenuOpen,
     toggleDarkMode,
+    darkModeBSClassNames,
+    menuOpen: clientState.menuOpen,
+    toggleMenuOpen,
+    modalState: clientState.modalState,
+    modalAbility: clientState.modalAbility,
+    openModalAbility,
+    closeModal,
   }
   return (
     <UIContext.Provider value={ctxValue}>{props.children}</UIContext.Provider>
