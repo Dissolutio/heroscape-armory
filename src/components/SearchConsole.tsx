@@ -14,6 +14,7 @@ export const SearchConsole = () => {
   const { addFilter } = useDeckContext()
   const searchId = 'allSearch'
   const handleAddFilterSubmit = (event) => {
+    event.preventDefault()
     const text = event.target.elements[searchId].value
     addFilter(text, 'all')
   }
