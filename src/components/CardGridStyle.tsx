@@ -2,14 +2,15 @@ import styled from 'styled-components'
 
 export const CardGridStyle = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 4fr;
-  grid-template-rows: 1fr 3fr;
-  gap: 1rem;
+  grid-template-columns: 4rem auto;
+  grid-template-rows: 4rem 6rem auto 2rem;
+  gap: 10px;
   grid-template-areas:
-    'g1 g3 g4'
-    'g2 g3 g4';
-  height: 300px;
-  max-width: 600px;
+    'g1 g3'
+    'g2 g3'
+    'g4 g4'
+    'g5 g5';
+  height: 100%;
   .nav-link.active {
     background-color: var(--bs-secondary);
   }
@@ -24,6 +25,8 @@ export const CardGridStyle = styled.div`
   }
   .g4 {
     grid-area: g4;
-    overflow: auto;
+  }
+  .g5 {
+    grid-area: g5;
   }
 `

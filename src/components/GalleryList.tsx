@@ -12,7 +12,7 @@ export const GalleryList = () => {
   const { filteredDeck } = useDeckContext()
   const { darkModeBSClassNames } = useUIContext()
   return (
-    <Container className={`mt-2 mb-2`}>
+    <Container className={` mb-2`}>
       <Jumbotron className={`text-center ${darkModeBSClassNames}`}>
         <h3 className={`d-inline ${darkModeBSClassNames}`}>Gallery </h3>
         <Badge variant="warning" className={`small`}>
