@@ -21,7 +21,9 @@ export const GalleryCard = (props) => {
   return (
     <Card key={card.name} className={`h-100 ${darkModeBSClassNames} mb-3 mt-3`}>
       <Card.Header
-        className={`${card.general}-background-gradient ${card.general}-frame border-0`}
+        className={`${card.general}-background-gradient${
+          !darkMode ? '__light' : ''
+        } ${card.general}-frame border-0`}
       >
         {card.name}
       </Card.Header>
