@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuthUserContext, useFirebaseContext } from '.'
 
-const CurrentUserReadout = () => {
+export const CurrentUserReadout = () => {
     const firebaseApp = useFirebaseContext()
     const { user } = useAuthUserContext()
     return (
@@ -18,4 +18,3 @@ const CurrentUserReadout = () => {
     )
 }
 
-export default CurrentUserReadout

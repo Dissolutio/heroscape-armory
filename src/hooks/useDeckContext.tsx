@@ -9,7 +9,7 @@ export const DeckContext = React.createContext<Partial<DeckContextValue>>({
 })
 
 interface CardFilter {
-  fields: 'all' | 'general'
+  fields: 'all' | 'general' | 'cardID'
   value: string
 }
 
@@ -19,6 +19,7 @@ interface DeckContextValue {
   deck: ICoreHeroscapeCard[]
   filteredDeck: ICoreHeroscapeCard[]
   addFilter: (text: string, fields: string) => void
+  setFilterForCardID: (cardName: string) => void
 }
 
 const DeckContextProvider = (props: { children: React.ReactNode }) => {
@@ -43,6 +44,9 @@ const DeckContextProvider = (props: { children: React.ReactNode }) => {
       return newState
     })
   }
+  const setFilterForCardID = (cardID: string) => {
+    setFilters([{ fields: 'cardID', value: cardID }])
+  }
 
   const ctxValue = {
     filters,
@@ -50,6 +54,7 @@ const DeckContextProvider = (props: { children: React.ReactNode }) => {
     deck,
     filteredDeck,
     addFilter,
+    setFilterForCardID,
   }
   return (
     <DeckContext.Provider value={ctxValue}>
@@ -70,6 +75,7 @@ const runFilterOnCards = (filter: CardFilter, cards: ICoreHeroscapeCard[]) => {
   const regexp = new RegExp(`${value}`, 'i')
 
   const cardsByName = coreHeroscapeCards.filter(filterByCardName)
+  const cardsByCardID = coreHeroscapeCards.filter(filterByCardID)
   const cardsByGeneral = coreHeroscapeCards.filter(filterByCardGeneral)
   const cardsByClass = coreHeroscapeCards.filter(filterByCardClass)
   const cardsByRace = coreHeroscapeCards.filter(filterByCardRace)
@@ -85,12 +91,17 @@ const runFilterOnCards = (filter: CardFilter, cards: ICoreHeroscapeCard[]) => {
         .concat(cardsByPersonality)
         .concat(cardsByAbilities)
         .filter(makeArrayUnique)
+    case 'cardID':
+      return cardsByCardID.filter(makeArrayUnique)
     case 'general':
       return cardsByGeneral.filter(makeArrayUnique)
     default:
       return cards
   }
 
+  function filterByCardID(card) {
+    return card.cardID.match(regexp)
+  }
   function filterByCardName(card) {
     return card.name.match(regexp)
   }

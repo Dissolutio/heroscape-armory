@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Modal from 'react-bootstrap/Modal'
 import { useUIContext, modalStates } from 'hooks/useUIContext'
 
-export default function ModalDisplay() {
+export const ModalDisplay = () => {
   const {
     darkMode,
     darkModeBSClassNames,

@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useFirebaseContext } from '../../firebase'
-import PasswordForgetForm from './PasswordForgetForm'
-import * as ROUTES from '../../routes'
-import { useInputValue } from '../../hooks/useInputValue'
 
-const SignInForm = props => {
+import { useFirebaseContext } from './context'
+import { useInputValue } from 'hooks/useInputValue'
+import {PasswordForgetForm} from './PasswordForgetForm'
+import {ROUTES} from 'routes'
+
+export const SignInForm = () => {
     const email = useInputValue('')
     const password = useInputValue('')
     const firebaseApp = useFirebaseContext()
@@ -59,5 +60,3 @@ const SignInForm = props => {
         </>
     )
 }
-
-export default SignInForm

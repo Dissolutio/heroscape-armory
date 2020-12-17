@@ -85,40 +85,51 @@ export const GalleryCard = (props) => {
 const StatsSection = (props: { card: ICoreHeroscapeCard }) => {
   const { card } = props
   return (
-    <div className="d-flex flex-column justify-content-between">
-      <span className="flex-fill">
+    <div className="">
+      <div className="flex-fill">
         <Badge
-          className="mr-1"
+          className="p-1 mr-1"
           variant="light"
           style={{ textTransform: 'capitalize' }}
         >
           {card.race}
         </Badge>
         <Badge
-          className="mr-1"
+          className="p-1 mr-1"
           variant="light"
           style={{ textTransform: 'capitalize' }}
         >
           {card.cardClass}
         </Badge>
         <Badge
-          className="mr-1"
+          className="p-1 mr-1"
           variant="light"
           style={{ textTransform: 'capitalize' }}
         >
           {`${card.personality}`}
         </Badge>
-      </span>
-
-      <span className="flex-fill">
-        <Badge variant="success">Move: {card.move}</Badge>
-        <Badge variant="secondary">Range: {card.range}</Badge>
-        <Badge variant="danger">Attack: {card.attack}</Badge>
-        <Badge variant="primary">Defense: {card.defense}</Badge>
-        <Badge variant="info">
+      </div>
+      <div className="flex-fill">
+        <Badge className="p-1 m-1 w-50" variant="success">
+          Move: {card.move}
+        </Badge>
+        <Badge className="p-1 m-1 w-50" variant="secondary">
+          Range: {card.range}
+        </Badge>
+      </div>
+      <div className="flex-fill">
+        <Badge className="p-1 m-1 w-50" variant="danger">
+          Attack: {card.attack}
+        </Badge>
+        <Badge className="p-1 m-1 w-50" variant="primary">
+          Defense: {card.defense}
+        </Badge>
+      </div>
+      <div className="flex-fill">
+        <Badge className="p-1" variant="info">
           Height: {card.height.split(' ')[1]} {card.height.split(' ')[0]}
         </Badge>
-      </span>
+      </div>
     </div>
   )
 }
