@@ -13,14 +13,12 @@ import { ROUTES } from './routes'
 import './scss/heroscapeFactionStyles.scss'
 
 const App = () => {
-  const { darkMode } = useUIContext()
-  const bgColor = darkMode ? 'var(--black)' : 'var(--secondary)'
   return (
     <UIContextProvider>
       <DeckContextProvider>
         <ArmySelectContextProvider>
           <Router>
-            <div style={{ minHeight: '100vh', backgroundColor: bgColor }}>
+            <AppWrapper>
               <NavBar />
               <ModalDisplay />
               <Switch>
@@ -43,11 +41,21 @@ const App = () => {
                   <div>404 Not Found</div>
                 </Route>
               </Switch>
-            </div>
+            </AppWrapper>
           </Router>
         </ArmySelectContextProvider>
       </DeckContextProvider>
     </UIContextProvider>
+  )
+}
+
+const AppWrapper = ({ children }) => {
+  const { darkMode } = useUIContext()
+  const bgColor = () => (darkMode ? 'var(--black)' : 'var(--white)')
+  return (
+    <div style={{ minHeight: '100vh', backgroundColor: bgColor() }}>
+      {children}
+    </div>
   )
 }
 

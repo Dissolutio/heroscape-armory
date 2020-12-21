@@ -2,31 +2,31 @@ import styled from 'styled-components'
 
 export const CardGridStyle = styled.div`
   display: grid;
-  grid-template-columns: 4rem auto;
-  grid-template-rows: 4rem 6rem auto 2rem;
+  grid-template-columns: 4.5rem auto;
+  grid-template-rows: 4.5rem 6rem auto 2rem;
   gap: 10px;
   grid-template-areas:
-    'g1 g3'
-    'g2 g3'
-    'g4 g4'
-    'g5 g5';
+    'portrait stats'
+    'points stats'
+    'abilities abilities'
+    'buttons buttons';
   height: 100%;
   .nav-link.active {
     background-color: var(--bs-secondary);
   }
-  .g1 {
-    grid-area: g1;
+  .cardgrid_portrait {
+    grid-area: portrait;
   }
-  .g2 {
-    grid-area: g2;
+  .cardgrid_points {
+    grid-area: points;
   }
-  .g3 {
-    grid-area: g3;
+  .cardgrid_stats {
+    grid-area: stats;
   }
-  .g4 {
-    grid-area: g4;
+  .cardgrid_abilities {
+    grid-area: abilities;
   }
-  .g5 {
-    grid-area: g5;
+  .cardgrid_buttons {
+    grid-area: buttons;
   }
 `

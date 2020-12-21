@@ -16,8 +16,7 @@ import { useUIContext } from 'hooks/useUIContext'
 import { useDeckContext } from 'hooks/useDeckContext'
 
 export const SearchConsole = () => {
-  const { darkMode } = useUIContext()
-  const { filters, addFilter, filteredDeck, setFilters } = useDeckContext()
+  const { filters, addFilter, filteredDeck } = useDeckContext()
   const searchId = 'allSearch'
   const handleAddFilterSubmit = (event) => {
     event.preventDefault()
@@ -63,11 +62,15 @@ export const SearchConsole = () => {
     </Container>
   )
 }
+
 const ViewAllCardsButton = (props: { isFilter: boolean }) => {
   const { darkMode } = useUIContext()
   const { setFilters } = useDeckContext()
   const { isFilter } = props
   const buttonText = isFilter ? 'View all cards' : 'Viewing all cards'
+  if (!isFilter) {
+    return null
+  }
   return (
     <Button
       variant={
@@ -76,8 +79,9 @@ const ViewAllCardsButton = (props: { isFilter: boolean }) => {
       className={`m-1`}
       onClick={() => setFilters([])}
       disabled={!isFilter}
+      size="sm"
     >
-      View All Cards
+      {buttonText}
     </Button>
   )
 }

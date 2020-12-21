@@ -15,22 +15,16 @@ export interface ArmyDraftCard {
   count: number
 }
 type ArmySelectContextValue = {
-  // state
   army: ArmyDraftCard[]
   setArmy: React.Dispatch<React.SetStateAction<ArmyDraftCard[]>>
   removeCardFromArmy: (card: ICoreHeroscapeCard) => void
   addCardToArmy: (card: ICoreHeroscapeCard) => void
   clearArmy: () => void
+  getDraftCardByCardID: (card: ICoreHeroscapeCard) => boolean
 }
 
 const ArmySelectContextProvider: React.FC = (props) => {
-  const [army, setArmy] = useState([
-    { cardID: 'hs1014', count: 1 },
-    { cardID: 'hs1015', count: 1 },
-    { cardID: 'hs1016', count: 3 },
-    { cardID: 'hs1103', count: 1 },
-    { cardID: 'hs1104', count: 1 },
-  ])
+  const [army, setArmy] = useState([])
 
   const addCardToArmy = (card: ICoreHeroscapeCard) => {
     setArmy((army) => {
@@ -54,14 +48,9 @@ const ArmySelectContextProvider: React.FC = (props) => {
       } else {
         newArmy.push({ cardID, count: 1 })
       }
-      console.log(
-        `🚀 ~ file: useArmySelectContext.tsx ~ line 53 ~ setArmy ~ newArmy`,
-        newArmy,
-      )
       return newArmy
     })
   }
-
   const removeCardFromArmy = (card: ICoreHeroscapeCard) => {
     setArmy((army) => {
       const newArmy = [...army]
@@ -88,6 +77,12 @@ const ArmySelectContextProvider: React.FC = (props) => {
       })
     })
   }
+  const getDraftCardByCardID = (card: ICoreHeroscapeCard): ArmyDraftCard => {
+    return army.find((c) => c.cardID === card.cardID)
+  }
+  const getDraftCardByCardID = (card: ICoreHeroscapeCard): ArmyDraftCard => {
+    return army.find((c) => c.cardID === card.cardID)
+  }
 
   return (
     <ArmySelectContext.Provider
@@ -97,6 +92,7 @@ const ArmySelectContextProvider: React.FC = (props) => {
         setArmy,
         addCardToArmy,
         removeCardFromArmy,
+        getDraftCardByCardID,
       }}
     >
       {props.children}

@@ -2,7 +2,6 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Badge from 'react-bootstrap/Badge'
 import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
 import { useUIContext } from 'hooks/useUIContext'
@@ -13,80 +12,90 @@ import { BsDashCircle, BsPlusCircle } from 'react-icons/bs'
 
 export const GalleryCard = (props) => {
   const card: ICoreHeroscapeCard = props.card
-  const { army } = useArmySelectContext()
   const { darkMode, darkModeBSClassNames } = useUIContext()
-  const isInArmy = (card: ICoreHeroscapeCard): boolean => {
-    return army.some((c) => c.cardID === card.cardID)
-  }
+  const factionFrameClassName = `${card.general}-frame`
+  const factionBgClassName = `${card.general}-background-gradient${
+    !darkMode ? '__light' : ''
+  }`
+
   return (
     <Card key={card.name} className={`h-100 ${darkModeBSClassNames} mb-3 mt-3`}>
       <Card.Header
-        className={`${card.general}-background-gradient${
-          !darkMode ? '__light' : ''
-        } ${card.general}-frame border-0`}
+        className={`${factionBgClassName} ${factionFrameClassName} border-0`}
       >
         {card.name}
       </Card.Header>
       <Card.Body className={`${card.general}-frame`}>
         <CardGridStyle>
-          <div className="g1">
+          <div className="cardgrid_portrait">
             <Card.Img
               src={`/heroscape-portraits/${card.image}`}
               className="text-center h-100"
             />
           </div>
 
-          <div className="g2">
-            <Badge
-              className={`d-block`}
-              style={{ textTransform: 'capitalize' }}
-            >
-              <span className="small">{card.type}</span>
-            </Badge>
-            <Badge variant="warning" className={`d-block`}>
-              {card.points}
-              <span className="small">{` points`}</span>
-            </Badge>
-            {card.type.includes('hero') && (
-              <Card.Text className="mt-2 mb-2">
-                <Badge className="" variant="danger">
-                  {card.life}
-                  <span className="small">{` life`}</span>
-                </Badge>
-              </Card.Text>
-            )}
-            {card.type.includes('squad') && (
-              <Card.Text className="mt-2 mb-2">
-                <Badge className="" variant={darkMode ? 'light' : 'dark'}>
-                  {card.figures}
-                  <span className="small">{` figures`}</span>
-                </Badge>
-              </Card.Text>
-            )}
+          <div className="cardgrid_points">
+            <TypePointsLifeFigures card={card} />
           </div>
 
-          <div className="g3">
+          <div className="cardgrid_stats">
             <StatsSection card={card} />
           </div>
 
-          <div className="g4">
-            <h4 className="small border-secondary border-bottom">Abilities</h4>
+          <div className="cardgrid_abilities">
+            <h4 className="small border-secondary border-bottom mt-1">
+              Abilities
+            </h4>
             <AbilitiesBadges card={card} />
           </div>
 
-          <div className="g5">
-            <AddRemoveButtons card={card} />
+          <div className="cardgrid_buttons">
+            <AddRemoveButtonToolbar card={card} />
           </div>
         </CardGridStyle>
       </Card.Body>
     </Card>
   )
 }
+const TypePointsLifeFigures = (props: { card: ICoreHeroscapeCard }) => {
+  const { card } = props
+  const { darkMode } = useUIContext()
+  return (
+    <>
+      <Badge className={`d-block`} style={{ textTransform: 'capitalize' }}>
+        <span className="small">{card.type}</span>
+      </Badge>
+      <Badge variant="warning" className={`d-block`}>
+        {card.points}
+        <span className="small mb-1">{` points`}</span>
+      </Badge>
+      {card.type.includes('hero') && (
+        <Card.Text className="mt-2 mb-2">
+          <Badge className="pb-1" variant="danger">
+            {card.life}
+            <span className="small">{` life`}</span>
+          </Badge>
+        </Card.Text>
+      )}
+      {card.type.includes('squad') && (
+        <Card.Text className="mt-2 mb-2">
+          <Badge className="pb-1" variant={darkMode ? 'light' : 'dark'}>
+            {card.figures}
+            <span className="small">{` figures`}</span>
+          </Badge>
+        </Card.Text>
+      )}
+    </>
+  )
+}
 const StatsSection = (props: { card: ICoreHeroscapeCard }) => {
   const { card } = props
   return (
-    <div className="">
-      <div className="flex-fill">
+    <div
+      className="d-flex flex-column justify-content-between"
+      style={{ maxWidth: '300px', marginLeft: 'auto', marginRight: 'auto' }}
+    >
+      <span className="flex-fill">
         <Badge
           className="p-1 mr-1"
           variant="light"
@@ -108,35 +117,43 @@ const StatsSection = (props: { card: ICoreHeroscapeCard }) => {
         >
           {`${card.personality}`}
         </Badge>
-      </div>
-      <div className="flex-fill">
-        <Badge className="p-1 m-1 w-50" variant="success">
+      </span>
+
+      <span className="flex-fill p-1 mt-2">
+        <Badge className="p-1 w-50" variant="success">
           Move: {card.move}
         </Badge>
-        <Badge className="p-1 m-1 w-50" variant="secondary">
+
+        <Badge className="p-1 w-50" variant="secondary">
           Range: {card.range}
         </Badge>
-      </div>
-      <div className="flex-fill">
-        <Badge className="p-1 m-1 w-50" variant="danger">
+      </span>
+      <span className="flex-fill p-1 mt-2">
+        <Badge className="p-1 w-50" variant="danger">
           Attack: {card.attack}
         </Badge>
-        <Badge className="p-1 m-1 w-50" variant="primary">
+
+        <Badge className="p-1 w-50" variant="primary">
           Defense: {card.defense}
         </Badge>
-      </div>
-      <div className="flex-fill">
-        <Badge className="p-1" variant="info">
+      </span>
+      <span className="flex-fill mt-2">
+        <Badge className="p-1 mr-1" variant="info">
           Height: {card.height.split(' ')[1]} {card.height.split(' ')[0]}
         </Badge>
-      </div>
+      </span>
     </div>
   )
 }
 
-const AddRemoveButtons = (props: { card: ICoreHeroscapeCard }) => {
+const AddRemoveButtonToolbar = (props: { card: ICoreHeroscapeCard }) => {
   const { card } = props
-  const { addCardToArmy, removeCardFromArmy } = useArmySelectContext()
+  const {
+    addCardToArmy,
+    removeCardFromArmy,
+    getDraftCardByCardID,
+  } = useArmySelectContext()
+  const getDraftCardByCardID = getDraftCardByCardID(card)
   const addClickHandler = (card: ICoreHeroscapeCard) => {
     addCardToArmy(card)
   }
@@ -144,27 +161,27 @@ const AddRemoveButtons = (props: { card: ICoreHeroscapeCard }) => {
     removeCardFromArmy(card)
   }
   return (
-    <Container>
-      <ButtonToolbar
-        className={`w-100 justify-content-around`}
-        aria-label="Toolbar with Button groups"
+    <ButtonToolbar
+      className={`w-100 justify-content-around`}
+      aria-label="Toolbar with Button groups"
+    >
+      <Button
+        variant="danger"
+        className={`flex-fill mr-1 `}
+        disabled={}
+        onClick={() => removeClickHandler(card)}
       >
-        <Button
-          variant="outline-danger"
-          className={`flex-fill mr-3 `}
-          onClick={() => removeClickHandler(card)}
-        >
-          <BsDashCircle />
-        </Button>
-        <Button
-          variant="outline-success"
-          className={`flex-fill ml-3 `}
-          onClick={() => addClickHandler(card)}
-        >
-          <BsPlusCircle />
-        </Button>
-      </ButtonToolbar>
-    </Container>
+        <BsDashCircle />
+      </Button>
+  <Badge variant='info'>{getDraftCardByCardID ? }</Badge>
+      <Button
+        variant="success"
+        className={`flex-fill ml-1 `}
+        onClick={() => addClickHandler(card)}
+      >
+        <BsPlusCircle />
+      </Button>
+    </ButtonToolbar>
   )
 }
 

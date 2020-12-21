@@ -10,8 +10,8 @@ import { ArmyDraftCard, useArmySelectContext } from 'hooks/useArmySelectContext'
 
 export const DraftArmy = () => {
   const { deck, setFilterForCardID } = useDeckContext()
-  const { darkMode, darkModeBSClassNames } = useUIContext()
-  const { army, addCardToArmy, removeCardFromArmy } = useArmySelectContext()
+  const { darkModeBSClassNames } = useUIContext()
+  const { army } = useArmySelectContext()
   const armyCost = army.reduce((prev, curr) => {
     const cardID = curr.cardID
     const card = deck.find((c) => c.cardID === cardID)
@@ -31,6 +31,7 @@ export const DraftArmy = () => {
           {army.map((draftCard: ArmyDraftCard) => {
             const { cardID, count } = draftCard
             const armyCard = deck.find((c) => c.cardID === cardID)
+            const { image, points } = armyCard
             return (
               <div
                 key={cardID}
@@ -38,10 +39,11 @@ export const DraftArmy = () => {
                 onClick={() => setFilterForCardID(cardID)}
               >
                 <Image
-                  src={`/heroscape-portraits/${armyCard.image}`}
+                  src={`/heroscape-portraits/${image}`}
                   style={{ width: '50px' }}
                   className="pl-1 pr-1 pt-1"
                 />
+                <span className="small text-warning">{`${points}`}</span>
                 <span className="small">{`x ${count}`}</span>
               </div>
             )
