@@ -3,18 +3,15 @@ import { FixedSizeList as List } from 'react-window'
 
 import { useDeckContext } from 'hooks/useDeckContext'
 import { GalleryCard } from './GalleryCard'
-import { shuffleArray } from 'utils'
 
 export const ReactWindowFixedSizeList = () => {
   const { filteredDeck } = useDeckContext()
-  const shuffledDeck = shuffleArray(filteredDeck)
-
   return (
     <List
       height={600}
-      itemCount={shuffledDeck.length}
+      itemCount={filteredDeck.length}
       itemSize={450}
-      itemData={shuffledDeck}
+      itemData={filteredDeck}
       width={'100%'}
     >
       {ListItemRenderer}

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { shuffleArray } from 'utils'
 import {
   coreHeroscapeCards,
   ICoreHeroscapeCard,
@@ -24,7 +25,7 @@ interface DeckContextValue {
 
 const DeckContextProvider = (props: { children: React.ReactNode }) => {
   const [filters, setFilters] = useState([])
-  const [deck, setDeck] = useState(coreHeroscapeCards)
+  const [deck, setDeck] = useState(() => shuffleArray(coreHeroscapeCards))
 
   const filteredDeck = filters.reduce((prev, filter) => {
     return runFilterOnCards(filter, prev)
@@ -73,7 +74,6 @@ export { DeckContextProvider, useDeckContext }
 const runFilterOnCards = (filter: CardFilter, cards: ICoreHeroscapeCard[]) => {
   const { fields, value } = filter
   const regexp = new RegExp(`${value}`, 'i')
-
   const cardsByName = coreHeroscapeCards.filter(filterByCardName)
   const cardsByCardID = coreHeroscapeCards.filter(filterByCardID)
   const cardsByGeneral = coreHeroscapeCards.filter(filterByCardGeneral)
