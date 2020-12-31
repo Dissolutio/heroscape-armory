@@ -19,8 +19,8 @@ type ArmySelectContextValue = {
   setArmy: React.Dispatch<React.SetStateAction<ArmyDraftCard[]>>
   removeCardFromArmy: (card: ICoreHeroscapeCard) => void
   addCardToArmy: (card: ICoreHeroscapeCard) => void
+  getDraftCardByCardID: (cardID: string) => ArmyDraftCard
   clearArmy: () => void
-  getDraftCardByCardID: (card: ICoreHeroscapeCard) => boolean
 }
 
 const ArmySelectContextProvider: React.FC = (props) => {
@@ -77,11 +77,12 @@ const ArmySelectContextProvider: React.FC = (props) => {
       })
     })
   }
-  const getDraftCardByCardID = (card: ICoreHeroscapeCard): ArmyDraftCard => {
-    return army.find((c) => c.cardID === card.cardID)
+  const getDraftCardByCardID = (cardID: string): ArmyDraftCard => {
+    //TODO: handle uncommon cards, where the root card is the same, but seperate cards are needed for gameplay
+    return army.find((c) => c.cardID === cardID)
   }
-  const getDraftCardByCardID = (card: ICoreHeroscapeCard): ArmyDraftCard => {
-    return army.find((c) => c.cardID === card.cardID)
+  const clearArmy = () => {
+    setArmy([])
   }
 
   return (
@@ -93,6 +94,7 @@ const ArmySelectContextProvider: React.FC = (props) => {
         addCardToArmy,
         removeCardFromArmy,
         getDraftCardByCardID,
+        clearArmy,
       }}
     >
       {props.children}

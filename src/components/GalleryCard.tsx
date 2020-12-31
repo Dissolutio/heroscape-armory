@@ -153,7 +153,8 @@ const AddRemoveButtonToolbar = (props: { card: ICoreHeroscapeCard }) => {
     removeCardFromArmy,
     getDraftCardByCardID,
   } = useArmySelectContext()
-  const getDraftCardByCardID = getDraftCardByCardID(card)
+
+  const armyCard = getDraftCardByCardID(card.cardID)
   const addClickHandler = (card: ICoreHeroscapeCard) => {
     addCardToArmy(card)
   }
