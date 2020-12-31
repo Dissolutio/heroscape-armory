@@ -2,13 +2,12 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Badge from 'react-bootstrap/Badge'
 import Button from 'react-bootstrap/Button'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
-import { useUIContext } from 'hooks/useUIContext'
-import { useArmySelectContext } from 'hooks/useArmySelectContext'
+import { useArmySelectContext, useUIContext } from 'hooks'
 import { CardGridStyle } from './CardGridStyle'
 import { ICoreHeroscapeCard } from 'assets/coreHeroscapeCards'
-import { BsDashCircle, BsPlusCircle } from 'react-icons/bs'
+import { BsDash, BsPlus } from 'react-icons/bs'
 
 export const GalleryCard = (props) => {
   const card: ICoreHeroscapeCard = props.card
@@ -21,11 +20,13 @@ export const GalleryCard = (props) => {
   return (
     <Card key={card.name} className={`h-100 ${darkModeBSClassNames} mb-3 mt-3`}>
       <Card.Header
-        className={`${factionBgClassName} ${factionFrameClassName} border-0`}
-      >
+        className={`${darkModeBSClassNames} ${factionBgClassName} ${factionFrameClassName} border-0`}
+        >
+          <h5>
         {card.name}
+          </h5>
       </Card.Header>
-      <Card.Body className={`${card.general}-frame`}>
+      <Card.Body className={`${factionFrameClassName}`}>
         <CardGridStyle>
           <div className="cardgrid_portrait">
             <Card.Img
@@ -153,36 +154,35 @@ const AddRemoveButtonToolbar = (props: { card: ICoreHeroscapeCard }) => {
     removeCardFromArmy,
     getDraftCardByCardID,
   } = useArmySelectContext()
-
+  const {darkModeBSClassNames} = useUIContext()
   const armyCard = getDraftCardByCardID(card.cardID)
+  const cardCount = armyCard?.count ?? 0
+  const isInArmy = cardCount > 0
   const addClickHandler = (card: ICoreHeroscapeCard) => {
     addCardToArmy(card)
   }
   const removeClickHandler = (card: ICoreHeroscapeCard) => {
     removeCardFromArmy(card)
   }
+
   return (
-    <ButtonToolbar
-      className={`w-100 justify-content-around`}
-      aria-label="Toolbar with Button groups"
+    <ButtonGroup
     >
       <Button
-        variant="danger"
-        className={`flex-fill mr-1 `}
-        disabled={}
+        className={`p-2 ${darkModeBSClassNames}`}
+        disabled={!isInArmy}
         onClick={() => removeClickHandler(card)}
       >
-        <BsDashCircle />
+        <BsDash style={{strokeWidth: '1'}} />
       </Button>
-  <Badge variant='info'>{getDraftCardByCardID ? }</Badge>
+      <Badge variant="secondary" className={`p-2`} style={{fontSize: '1.3rem'}}>{cardCount}</Badge>
       <Button
-        variant="success"
-        className={`flex-fill ml-1 `}
+        className={`p-2 ${darkModeBSClassNames}`}
         onClick={() => addClickHandler(card)}
       >
-        <BsPlusCircle />
+        <BsPlus style={{strokeWidth: '1'}} />
       </Button>
-    </ButtonToolbar>
+    </ButtonGroup>
   )
 }
 
