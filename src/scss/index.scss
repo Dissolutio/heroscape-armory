@@ -1,17 +1,17 @@
-@import url("https://fonts.googleapis.com/css?family=Playfair+Display");
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
 
 html {
   height: -webkit-fill-available;
 }
 body {
-  --bs-primary: #0275d8; 
-  --bs-secondary: #6c757d; 
-  --bs-info: #5bc0de; 
-  --bs-success: #5cb85c; 
-  --bs-warning: #f0ad4e; 
-  --bs-danger: #dc3545; 
-  --bs-dark: #343a40; 
-  --bs-light: #f8f9fa; 
+  --bs-primary: #0275d8;
+  --bs-secondary: #6c757d;
+  --bs-info: #5bc0de;
+  --bs-success: #5cb85c;
+  --bs-warning: #f0ad4e;
+  --bs-danger: #dc3545;
+  --bs-dark: #343a40;
+  --bs-light: #f8f9fa;
 
   --darkGray: rgb(49, 61, 66);
   --transparentGray: rgba(73, 91, 99, 0.9);
@@ -19,26 +19,35 @@ body {
   --black: rgb(3, 3, 3);
   --transparent-black: rgba(19, 17, 16, 0.8);
   --white: #f7faff;
-  
-  --aquilla: #e0d50d;
+
+  --aquilla: hsl(57, 89%, 46%);
+  --jandar: hsl(231, 78%, 46%);
   --aquillaDark: hsl(57, 100%, 40%);
-  --jandar: #1a36cf;
-  --ullar: #008000;
-  --einar: #7E2BB6;
-  --vydar: #219f82;
-  --utgar: #e70808;
-  --valkrill: #a7a13c;  
-  
+  --ullar: hsl(120, 100%, 25%);
+  --einar: hsl(276, 62%, 44%);
+  --vydar: hsl(166, 66%, 38%);
+  --utgar: hsl(0, 93%, 47%);
+  --valkrill: hsl(57, 47%, 45%);
+
   --brown: #9b7f58;
   --red: #962621;
-  
+
   --aquillaText: #fbef08;
   --jandarText: rgb(26, 54, 207);
   --ullarText: #008000;
   --einarText: #6914aa;
   --vydarText: hsl(166, 65%, 38%);
   --utgarText: hsla(0, 99%, 53%, 1);
-  
+
+  --jandarTransparent: hsla(231, 78%, 46%, 0.475);
+  --aquillaTransparent: hsla(57, 89%, 46%, 0.475);
+  --aquillaDarkTransparent: hsla(57, 100%, 40%, 0.475);
+  --ullarTransparent: hsla(120, 100%, 25%, 0.475);
+  --einarTransparent: hsla(276, 62%, 44%, 0.475);
+  --vydarTransparent: hsla(166, 66%, 38%, 0.475);
+  --utgarTransparent: hsla(0, 93%, 47%, 0.475);
+  --valkrillTransparent: hsla(57, 47%, 45%, 0.475);
+
   --cardLife: #621714;
   --cardMove: #194917;
   --cardRange: #6b6867;
@@ -55,5 +64,5 @@ body {
   */
   min-height: 100vh;
   min-height: -webkit-fill-available;
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
 }

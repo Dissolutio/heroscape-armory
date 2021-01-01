@@ -49,45 +49,115 @@
 }
 
 .jandar-background-gradient {
-  background-image: linear-gradient(180deg, var(--jandar) 0%, var(--bs-dark) 96%);
+  background-image: linear-gradient(
+    180deg,
+    var(--jandar) 0%,
+    var(--jandarTransparent) 100%
+  );
 }
 .ullar-background-gradient {
-  background-image: linear-gradient(180deg, var(--ullar) 0%, var(--bs-dark) 96%);
+  background-image: linear-gradient(
+    180deg,
+    var(--ullar) 0%,
+    var(--ullarTransparent) 100%
+  );
 }
 .einar-background-gradient {
-  background-image: linear-gradient(180deg, var(--einar) 0%, var(--bs-dark) 96%);
+  background-image: linear-gradient(
+    180deg,
+    var(--einar) 0%,
+    var(--einarTransparent) 100%
+  );
 }
 .utgar-background-gradient {
-  background-image: linear-gradient(180deg, var(--utgar) 0%, var(--bs-dark) 96%);
+  background-image: linear-gradient(
+    180deg,
+    var(--utgar) 0%,
+    var(--utgarTransparent) 100%
+  );
 }
 .vydar-background-gradient {
-  background-image: linear-gradient(180deg, var(--vydar) 0%, var(--bs-dark) 96%);
+  background-image: linear-gradient(
+    180deg,
+    var(--vydar) 0%,
+    var(--vydarTransparent) 100%
+  );
 }
 .valkrill-background-gradient {
-  background-image: linear-gradient(180deg, var(--valkrill) 0%, var(--bs-dark) 96%);
+  background-image: linear-gradient(
+    180deg,
+    var(--valkrill) 0%,
+    var(--valkrillTransparent) 100%
+  );
 }
 .aquilla-background-gradient {
-  background-image: linear-gradient(180deg, var(--aquillaDark) 0%, var(--bs-dark) 96%);
+  background-image: linear-gradient(
+    180deg,
+    var(--aquillaDark) 0%,
+    var(--aquillaDarkTransparent) 100%
+  );
 }
 // LIGHT THEME GRADIENTS
 .jandar-background-gradient__light {
-  background-image: linear-gradient(180deg, var(--jandar) 0%, var(--bs-light) 100%);
+  background-image: linear-gradient(
+    180deg,
+    var(--jandar) 0%,
+    var(--jandarTransparent) 20%,
+    var(--jandarTransparent) 80%,
+    var(--jandar) 100%
+  );
 }
 .ullar-background-gradient__light {
-  background-image: linear-gradient(180deg, var(--ullar) 0%, var(--bs-light) 100%);
+  background-image: linear-gradient(
+    180deg,
+    var(--ullar) 0%,
+    var(--ullarTransparent) 20%,
+    var(--ullarTransparent) 80%,
+    var(--ullar) 100%
+  );
 }
 .einar-background-gradient__light {
-  background-image: linear-gradient(180deg, var(--einar) 0%, var(--bs-light) 100%);
+  background-image: linear-gradient(
+    180deg,
+    var(--einar) 0%,
+    var(--einarTransparent) 20%,
+    var(--einarTransparent) 80%,
+    var(--einar) 100%
+  );
 }
 .utgar-background-gradient__light {
-  background-image: linear-gradient(180deg, var(--utgar) 0%, var(--bs-light) 100%);
+  background-image: linear-gradient(
+    180deg,
+    var(--utgar) 0%,
+    var(--utgarTransparent) 20%,
+    var(--utgarTransparent) 80%,
+    var(--utgar) 100%
+  );
 }
 .vydar-background-gradient__light {
-  background-image: linear-gradient(180deg, var(--vydar) 0%, var(--bs-light) 100%);
+  background-image: linear-gradient(
+    180deg,
+    var(--vydar) 0%,
+    var(--vydarTransparent) 20%,
+    var(--vydarTransparent) 80%,
+    var(--vydar) 100%
+  );
 }
 .valkrill-background-gradient__light {
-  background-image: linear-gradient(180deg, var(--valkrill) 0%, var(--bs-light) 100%);
+  background-image: linear-gradient(
+    180deg,
+    var(--valkrill) 0%,
+    var(--valkrillTransparent) 20%,
+    var(--valkrillTransparent) 80%,
+    var(--valkrill) 100%
+  );
 }
 .aquilla-background-gradient__light {
-  background-image: linear-gradient(180deg, var(--aquillaDark) 0%, var(--bs-light) 100%);
+  background-image: linear-gradient(
+    180deg,
+    var(--aquillaDark) 0%,
+    var(--aquillaDarkTransparent) 20%,
+    var(--aquillaDarkTransparent) 80%,
+    var(--aquillaDark) 100%
+  );
 }
