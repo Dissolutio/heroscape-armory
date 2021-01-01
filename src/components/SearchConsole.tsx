@@ -1,5 +1,4 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container'
 import FormControl from 'react-bootstrap/FormControl'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
@@ -7,13 +6,11 @@ import Badge from 'react-bootstrap/Badge'
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { BsSearch } from 'react-icons/bs'
 
-import { useUIContext } from 'hooks/useUIContext'
-import { useDeckContext } from 'hooks/useDeckContext'
+import { useUIContext, useDeckContext } from 'hooks'
 
 export const SearchConsole = () => {
   const { filters, addFilter, filteredDeck } = useDeckContext()
@@ -25,7 +22,15 @@ export const SearchConsole = () => {
   }
   const isFilter = filters.length > 0
   return (
-    <Container className={` mt-2 mb-2 border-bottom`}>
+    <>
+      <h3 className={`d-inline small`}>Cards: </h3>
+      <Badge variant="warning" className={`small ml-2 mb-1`}>
+        Showing {filteredDeck.length} items
+      </Badge>
+      <hr className={`w-100 mt-3 mb-3`} />
+      <Row>
+        <ViewAllCardsButton isFilter={isFilter} />
+      </Row>
       <Row>
         <Col xs={6}>
           <Form inline onSubmit={handleAddFilterSubmit}>
@@ -40,7 +45,6 @@ export const SearchConsole = () => {
                 aria-describedby="search-bar"
                 type="text"
                 id={searchId}
-                placeholder="Search"
               />
             </InputGroup>
           </Form>
@@ -49,17 +53,8 @@ export const SearchConsole = () => {
           <HSFactionSearchDropdown />
         </Col>
       </Row>
-      <Row>
-        <Col xs={6}>
-          <Badge variant="warning" className={`small`}>
-            Showing {filteredDeck.length} items
-          </Badge>
-        </Col>
-        <Col xs={6}>
-          <ViewAllCardsButton isFilter={isFilter} />
-        </Col>
-      </Row>
-    </Container>
+      <hr className={`w-100 mt-3 mb-3`} />
+    </>
   )
 }
 
@@ -76,7 +71,7 @@ const ViewAllCardsButton = (props: { isFilter: boolean }) => {
       variant={
         darkMode ? (isFilter ? 'info' : 'secondary') : isFilter ? '' : ''
       }
-      className={`m-1`}
+      className={``}
       onClick={() => setFilters([])}
       disabled={!isFilter}
       size="sm"
@@ -99,10 +94,10 @@ export const HSFactionSearchDropdown = () => {
   ]
   return (
     <Dropdown as={ButtonGroup} className={`${darkModeBSClassNames}`}>
-      <Dropdown.Toggle className={`bg-secondary m-1`} id="dropdown-custom-1">
-        Select faction
+      <Dropdown.Toggle className={`bg-secondary p-1`} id="dropdown-custom-1">
+        <span className="small">Faction</span>
       </Dropdown.Toggle>
-      <Dropdown.Menu className="p-0">
+      <Dropdown.Menu className={`p-1 ${darkModeBSClassNames}`}>
         {factionList.map((factionName, index) => (
           <FactionDropdownItem key={index} factionName={factionName} />
         ))}
