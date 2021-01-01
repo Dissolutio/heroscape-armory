@@ -27,11 +27,16 @@ export const SearchConsole = () => {
       <Badge variant="warning" className={`small ml-2 mb-1`}>
         Showing {filteredDeck.length} items
       </Badge>
-      <hr className={`w-100 mt-3 mb-3`} />
+      <hr
+        className={`w-100 mt-3 mb-3`}
+        style={{
+          borderTop: `1px solid var(--bs-secondary)`,
+        }}
+      />
       <Row>
-        <ViewAllCardsButton isFilter={isFilter} />
-      </Row>
-      <Row>
+        <Col xs={6}>
+          <HSFactionSearchDropdown />
+        </Col>
         <Col xs={6}>
           <Form inline onSubmit={handleAddFilterSubmit}>
             <InputGroup size="sm">
@@ -49,17 +54,23 @@ export const SearchConsole = () => {
             </InputGroup>
           </Form>
         </Col>
-        <Col xs={6}>
-          <HSFactionSearchDropdown />
+      </Row>
+      <Row>
+        <Col xs={12}>
+          <ViewAllCardsButton isFilter={isFilter} />
         </Col>
       </Row>
-      <hr className={`w-100 mt-3 mb-3`} />
+      <hr
+        className={`w-100 mt-3 mb-3`}
+        style={{
+          borderTop: `1px solid var(--bs-secondary)`,
+        }}
+      />
     </>
   )
 }
 
 const ViewAllCardsButton = (props: { isFilter: boolean }) => {
-  const { darkMode } = useUIContext()
   const { setFilters } = useDeckContext()
   const { isFilter } = props
   const buttonText = isFilter ? 'View all cards' : 'Viewing all cards'
@@ -68,13 +79,11 @@ const ViewAllCardsButton = (props: { isFilter: boolean }) => {
   }
   return (
     <Button
-      variant={
-        darkMode ? (isFilter ? 'info' : 'secondary') : isFilter ? '' : ''
-      }
-      className={``}
+      variant="info"
+      className={`d-block w-100 mt-3`}
       onClick={() => setFilters([])}
       disabled={!isFilter}
-      size="sm"
+      // size="sm"
     >
       {buttonText}
     </Button>
@@ -93,7 +102,7 @@ export const HSFactionSearchDropdown = () => {
     'valkrill',
   ]
   return (
-    <Dropdown as={ButtonGroup} className={`${darkModeBSClassNames}`}>
+    <Dropdown as={ButtonGroup} className={`${darkModeBSClassNames} w-100`}>
       <Dropdown.Toggle className={`bg-secondary p-1`} id="dropdown-custom-1">
         <span className="small">Faction</span>
       </Dropdown.Toggle>

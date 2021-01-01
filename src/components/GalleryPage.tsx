@@ -12,7 +12,7 @@ export const GalleryPage = () => {
   return (
     <>
       <DraftArmy />
-      <Container>
+      <Container style={{ maxWidth: '500px' }}>
         <Jumbotron
           className={`${darkModeBSClassNames} text-center pt-1 pb-2 mt-0`}
         >
