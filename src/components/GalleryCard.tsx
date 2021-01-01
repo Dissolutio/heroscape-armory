@@ -13,20 +13,20 @@ export const GalleryCard = (props) => {
   const card: ICoreHeroscapeCard = props.card
   const { darkMode, darkModeBSClassNames } = useUIContext()
   const factionFrameClassName = `${card.general}-frame`
-  const factionBgClassName = `${card.general}-background-gradient${
+  const factionGradientClassName = `${card.general}-background-gradient${
     !darkMode ? '__light' : ''
   }`
 
   return (
     <Card key={card.name} className={`h-100 ${darkModeBSClassNames} mb-3 mt-3`}>
-      <Card.Header
-        className={`${darkModeBSClassNames} ${factionBgClassName} ${factionFrameClassName} border-0`}
+      <Card.Header className={`p-0 border-0`}>
+        <h6
+          className={`m-0 pt-2 pb-2 ${factionGradientClassName} ${factionFrameClassName}`}
         >
-          <h5>
-        {card.name}
-          </h5>
+          {card.name}
+        </h6>
       </Card.Header>
-      <Card.Body className={`${factionFrameClassName}`}>
+      <Card.Body className={`${factionFrameClassName} p-3`}>
         <CardGridStyle>
           <div className="cardgrid_portrait">
             <Card.Img
@@ -63,8 +63,12 @@ const TypePointsLifeFigures = (props: { card: ICoreHeroscapeCard }) => {
   const { darkMode } = useUIContext()
   return (
     <>
-      <Badge className={`d-block`} style={{ textTransform: 'capitalize' }}>
-        <span className="small">{card.type}</span>
+      <Badge
+        variant={darkMode ? 'light' : 'dark'}
+        className={`d-block mb-1`}
+        style={{ textTransform: 'capitalize', fontSize: '0.5em' }}
+      >
+        {card.type}
       </Badge>
       <Badge variant="warning" className={`d-block`}>
         {card.points}
@@ -72,7 +76,7 @@ const TypePointsLifeFigures = (props: { card: ICoreHeroscapeCard }) => {
       </Badge>
       {card.type.includes('hero') && (
         <Card.Text className="mt-2 mb-2">
-          <Badge className="pb-1" variant="danger">
+          <Badge className="pb-1 d-block" variant="danger">
             {card.life}
             <span className="small">{` life`}</span>
           </Badge>
@@ -154,7 +158,7 @@ const AddRemoveButtonToolbar = (props: { card: ICoreHeroscapeCard }) => {
     removeCardFromArmy,
     getDraftCardByCardID,
   } = useArmySelectContext()
-  const {darkModeBSClassNames} = useUIContext()
+  const { darkModeBSClassNames } = useUIContext()
   const armyCard = getDraftCardByCardID(card.cardID)
   const cardCount = armyCard?.count ?? 0
   const isInArmy = cardCount > 0
@@ -166,21 +170,26 @@ const AddRemoveButtonToolbar = (props: { card: ICoreHeroscapeCard }) => {
   }
 
   return (
-    <ButtonGroup
-    >
+    <ButtonGroup>
       <Button
         className={`p-2 ${darkModeBSClassNames}`}
         disabled={!isInArmy}
         onClick={() => removeClickHandler(card)}
       >
-        <BsDash style={{strokeWidth: '1'}} />
+        <BsDash style={{ strokeWidth: '1' }} />
       </Button>
-      <Badge variant="secondary" className={`p-2`} style={{fontSize: '1.3rem'}}>{cardCount}</Badge>
+      <Badge
+        variant="secondary"
+        className={`p-2`}
+        style={{ fontSize: '1.3rem' }}
+      >
+        {cardCount}
+      </Badge>
       <Button
         className={`p-2 ${darkModeBSClassNames}`}
         onClick={() => addClickHandler(card)}
       >
-        <BsPlus style={{strokeWidth: '1'}} />
+        <BsPlus style={{ strokeWidth: '1' }} />
       </Button>
     </ButtonGroup>
   )

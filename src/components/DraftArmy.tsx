@@ -19,9 +19,9 @@ export const DraftArmy = () => {
     return prev + cardPoints
   }, 0)
   return (
-    <Container className={`mt-2 mb-2`}>
+    <Container className={`mt-2`}>
       <Jumbotron
-        className={`${darkModeBSClassNames} text-center mt-3 pt-1 pb-2`}
+        className={`${darkModeBSClassNames} text-center pt-1 pb-2`}
       >
         <h3 className={`d-inline small`}>Army: </h3>
         <Badge variant="warning" className={`small ml-2 mb-1`}>

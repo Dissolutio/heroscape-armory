@@ -18,8 +18,8 @@ const App = () => {
       <DeckContextProvider>
         <ArmySelectContextProvider>
           <Router>
-            <AppWrapper>
-              <NavBar />
+            <Layout>
+              
               <ModalDisplay />
               <Switch>
                 <Route exact path={ROUTES.MAINGALLERY}>
@@ -41,7 +41,7 @@ const App = () => {
                   <div>404 Not Found</div>
                 </Route>
               </Switch>
-            </AppWrapper>
+            </Layout>
           </Router>
         </ArmySelectContextProvider>
       </DeckContextProvider>
@@ -49,11 +49,12 @@ const App = () => {
   )
 }
 
-const AppWrapper = ({ children }) => {
+const Layout = ({ children }) => {
   const { darkMode } = useUIContext()
   const bgColor = () => (darkMode ? 'var(--black)' : 'var(--white)')
   return (
     <div style={{ minHeight: '100vh', backgroundColor: bgColor() }}>
+      <NavBar />
       {children}
     </div>
   )
