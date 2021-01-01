@@ -3,7 +3,7 @@ export interface ICoreHeroscapeCard {
 	cardID: string
 	image: string
 	portraitPattern: string
-	general: string
+	general: 'jandar' | 'utgar' | 'ullar' | 'vydar' | 'einar' | 'aquilla' | 'valkrill'
 	race: string
 	type: string
 	cardClass: string
@@ -6164,7 +6164,7 @@ export const coreHeroscapeCards: ICoreHeroscapeCard[] = [
 			{
 				name: 'Exoskeleton',
 				desc:
-					'At the start of the game, place 1 copper Exoskeleton marker on a Mezzodemon Warmongers Army Card for each Mezzodemon Warmonger figure in your Army. After a Mezzodemon Warmonger rolls defense dice against a normal attack, you may remove 1 Exoskeleton marker from its Army Card to ignore all wounds inflicted by that attack. Orc Battle Rush',
+					'At the start of the game, place 1 copper Exoskeleton marker on a Mezzodemon Warmongers Army Card for each Mezzodemon Warmonger figure in your Army. After a Mezzodemon Warmonger rolls defense dice against a normal attack, you may remove 1 Exoskeleton marker from its Army Card to ignore all wounds inflicted by that attack.',
 			},
 		],
 	},

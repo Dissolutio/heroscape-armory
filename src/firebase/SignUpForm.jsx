@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import { withRouter } from 'react-router-dom'
-import { useFirebaseContext } from '../../firebase'
-import { useInputValue } from '../../hooks/useInputValue'
 
-const SignUpForm = props => {
+import { useFirebaseContext } from './context'
+import { useInputValue } from 'hooks/useInputValue'
+
+export const SignUpForm = () => {
 	const firebaseApp = useFirebaseContext()
-	const username = useInputValue('dissolutio')
-	const email = useInputValue('entity.john@gmail.com')
-	const password = useInputValue('password')
-	const passwordVerify = useInputValue('password')
-	const [error, setError] = useState({ code: 'fake code', message: 'nothing to say' })
+	const username = useInputValue('')
+	const email = useInputValue('')
+	const password = useInputValue('')
+	const passwordVerify = useInputValue('')
+	const [error, setError] = useState({ code: '', message: '' })
 
 	const onFormSubmit = event => {
 		event.preventDefault()
@@ -26,7 +26,6 @@ const SignUpForm = props => {
 				})
 			})
 			.catch(error => {
-				console.log('Error creating user', error)
 				setError({
 					...error,
 				})
@@ -78,4 +77,3 @@ const SignUpForm = props => {
 	)
 }
 
-export default withRouter(SignUpForm)

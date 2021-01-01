@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { useFirebaseContext } from '../../firebase'
+import { useFirebaseContext } from './context'
 
-const PasswordForgetForm = () => {
+export const PasswordForgetForm = () => {
 	const [formData, setFormData] = useState({
 		email: '',
 		error: null,
@@ -45,4 +45,3 @@ const PasswordForgetForm = () => {
 		</form>
 	)
 }
-export default PasswordForgetForm

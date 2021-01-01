@@ -10,16 +10,16 @@ const useArmySelectContext = () => {
     ...useContext(ArmySelectContext),
   }
 }
-interface ArmyDraftCard {
+export interface ArmyDraftCard {
   cardID: string
   count: number
 }
 type ArmySelectContextValue = {
-  // state
   army: ArmyDraftCard[]
   setArmy: React.Dispatch<React.SetStateAction<ArmyDraftCard[]>>
   removeCardFromArmy: (card: ICoreHeroscapeCard) => void
   addCardToArmy: (card: ICoreHeroscapeCard) => void
+  getDraftCardByCardID: (cardID: string) => ArmyDraftCard
   clearArmy: () => void
 }
 
@@ -48,14 +48,9 @@ const ArmySelectContextProvider: React.FC = (props) => {
       } else {
         newArmy.push({ cardID, count: 1 })
       }
-      console.log(
-        `🚀 ~ file: useArmySelectContext.tsx ~ line 53 ~ setArmy ~ newArmy`,
-        newArmy,
-      )
       return newArmy
     })
   }
-
   const removeCardFromArmy = (card: ICoreHeroscapeCard) => {
     setArmy((army) => {
       const newArmy = [...army]
@@ -75,12 +70,19 @@ const ArmySelectContextProvider: React.FC = (props) => {
       }
       // or decrement card
       return newArmy.map((c) => {
-        if (c.name !== cardID) {
+        if (c.cardID !== cardID) {
           return { ...c, count: newCount }
         }
         return c
       })
     })
+  }
+  const getDraftCardByCardID = (cardID: string): ArmyDraftCard => {
+    //TODO: handle uncommon cards, where the root card is the same, but seperate cards are needed for gameplay
+    return army.find((c) => c.cardID === cardID)
+  }
+  const clearArmy = () => {
+    setArmy([])
   }
 
   return (
@@ -91,6 +93,8 @@ const ArmySelectContextProvider: React.FC = (props) => {
         setArmy,
         addCardToArmy,
         removeCardFromArmy,
+        getDraftCardByCardID,
+        clearArmy,
       }}
     >
       {props.children}

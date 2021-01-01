@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { useFirebaseContext } from '../../firebase'
 
-export default function VerifyEmail() {
+import { useFirebaseContext } from './context'
+
+export const  VerifyEmail = () => {
 	const [isSent, setIsSent] = useState(false)
 	const firebaseApp = useFirebaseContext()
 	const sendEmail = event => {
