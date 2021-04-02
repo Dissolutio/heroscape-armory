@@ -144,7 +144,7 @@ const StatsSection = (props: { card: ICoreHeroscapeCard }) => {
       </span>
       <span className="flex-fill mt-2">
         <Badge className="p-1 mr-1" variant="info">
-          Height: {card.height.split(' ')[1]} {card.height.split(' ')[0]}
+          Height: {card.size} {card.height}
         </Badge>
       </span>
     </div>
