@@ -8,9 +8,9 @@ import {
   useUIContext,
 } from './hooks'
 import { NavBar, ModalDisplay, GalleryPage } from './components'
-import { SignUpForm, SignInForm, PasswordForgetForm } from './firebase'
 import { ROUTES } from './routes'
 import './css/heroscapeFactionStyles.css'
+import { CardData } from 'components/card-data/CardData'
 
 const App = () => {
   return (
@@ -21,20 +21,11 @@ const App = () => {
             <Layout>
               <ModalDisplay />
               <Switch>
-                <Route exact path={ROUTES.MAINGALLERY}>
+                <Route exact path={ROUTES.MAIN_GALLERY}>
                   <GalleryPage />
                 </Route>
-                <Route exact path={ROUTES.SIGN_UP}>
-                  <SignUpForm />
-                </Route>
-                <Route exact path={ROUTES.SIGN_IN}>
-                  <SignInForm />
-                </Route>
-                <Route exact path={ROUTES.PASSWORD_FORGET}>
-                  <PasswordForgetForm />
-                </Route>
-                <Route path={ROUTES.PASSWORD_FORGET}>
-                  <PasswordForgetForm />
+                <Route exact path={ROUTES.CARD_DATA}>
+                  <CardData />
                 </Route>
                 <Route path="*">
                   <div>404 Not Found</div>

@@ -19,7 +19,7 @@ export const NavBar = () => {
         <Navbar.Brand
           className={`${darkMode ? 'text-light' : 'text-light'}`}
           as={Link}
-          to={ROUTES.MAINGALLERY}
+          to={ROUTES.MAIN_GALLERY}
         >
           Heroscape Armory
         </Navbar.Brand>
@@ -33,6 +33,11 @@ export const NavBar = () => {
               >
                 Toggle Dark Mode
               </Button>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={Link} to="/data">
+                Data
+              </Nav.Link>
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

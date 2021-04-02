@@ -9,8 +9,9 @@ export const DeckContext = React.createContext<Partial<DeckContextValue>>({
   filters: [],
 })
 
+type FilterType = 'all' | 'general' | 'cardID' | 'setWave'
 interface CardFilter {
-  fields: 'all' | 'general' | 'cardID'
+  fields: FilterType
   value: string
 }
 
@@ -19,7 +20,7 @@ interface DeckContextValue {
   setFilters: React.Dispatch<React.SetStateAction<CardFilter[]>>
   deck: ICoreHeroscapeCard[]
   filteredDeck: ICoreHeroscapeCard[]
-  addFilter: (text: string, fields: string) => void
+  addFilter: (text: string, fields: FilterType) => void
   setFilterForCardID: (cardName: string) => void
 }
 
@@ -31,7 +32,9 @@ const DeckContextProvider = (props: { children: React.ReactNode }) => {
     return runFilterOnCards(filter, prev)
   }, deck)
 
-  const addFilter = (text: string, fields: string) => {
+  const addFilter = (text: string, fields: FilterType) => {
+    // If there is already a filter of the same type, then replace it,
+    // otherwise just add the new one.
     setFilters((state) => {
       const newState = [...state]
       const oldFilterIndex = state.findIndex((f) => f.fields === fields)
@@ -81,6 +84,7 @@ const runFilterOnCards = (filter: CardFilter, cards: ICoreHeroscapeCard[]) => {
   const cardsByRace = coreHeroscapeCards.filter(filterByCardRace)
   const cardsByPersonality = coreHeroscapeCards.filter(filterByCardPersonality)
   const cardsByAbilities = coreHeroscapeCards.filter(filterByAbilities)
+  const cardsBySetWave = coreHeroscapeCards.filter(filterBySetWave)
 
   switch (fields) {
     case 'all':
@@ -95,6 +99,8 @@ const runFilterOnCards = (filter: CardFilter, cards: ICoreHeroscapeCard[]) => {
       return cardsByCardID.filter(makeArrayUnique)
     case 'general':
       return cardsByGeneral.filter(makeArrayUnique)
+    case 'setWave':
+      return cardsBySetWave.filter(makeArrayUnique)
     default:
       return cards
   }
@@ -121,6 +127,9 @@ const runFilterOnCards = (filter: CardFilter, cards: ICoreHeroscapeCard[]) => {
     return card.abilities.some((ability) => {
       return ability.name.match(regexp) || ability.desc.match(regexp)
     })
+  }
+  function filterBySetWave(card) {
+    return card.setWave.match(regexp)
   }
   function makeArrayUnique(value, index, self) {
     return self.indexOf(value) === index
