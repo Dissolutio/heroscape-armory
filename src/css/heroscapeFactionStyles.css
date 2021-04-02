@@ -1,51 +1,51 @@
 .jandar-frame {
   border: 1px solid var(--jandar);
   box-shadow: inset 0px 0px 0.5rem 0.1rem var(--jandar);
-  &:focus {
-    box-shadow: 1px 1px 1rem 0.3rem var(--jandar);
-  }
+}
+.jandar-frame:focus {
+  box-shadow: 1px 1px 1rem 0.3rem var(--jandar);
 }
 .ullar-frame {
   border: 1px solid var(--ullar);
   box-shadow: inset 0px 0px 0.5rem 0.1rem var(--ullar);
-  &:focus {
-    box-shadow: 1px 1px 1rem 0.3rem var(--ullar);
-  }
+}
+.ullar-frame:focus {
+  box-shadow: 1px 1px 1rem 0.3rem var(--ullar);
 }
 .einar-frame {
   border: 1px solid var(--einar);
   box-shadow: inset 0px 0px 0.5rem 0.1rem var(--einar);
-  &:focus {
-    box-shadow: 1px 1px 1rem 0.3rem var(--einar);
-  }
+}
+.einar-frame:focus {
+  box-shadow: 1px 1px 1rem 0.3rem var(--einar);
 }
 .utgar-frame {
   border: 1px solid var(--utgar);
   box-shadow: inset 0px 0px 0.5rem 0.1rem var(--utgar);
-  &:focus {
-    box-shadow: 1px 1px 1rem 0.3rem var(--utgar);
-  }
+}
+.utgar-frame:focus {
+  box-shadow: 1px 1px 1rem 0.3rem var(--utgar);
 }
 .vydar-frame {
   border: 1px solid var(--vydar);
   box-shadow: inset 0px 0px 0.5rem 0.1rem var(--vydar);
-  &:focus {
-    box-shadow: 1px 1px 1rem 0.3rem var(--vydar);
-  }
+}
+.vydar-frame:focus {
+  box-shadow: 1px 1px 1rem 0.3rem var(--vydar);
 }
 .valkrill-frame {
   border: 1px solid var(--valkrill);
   box-shadow: inset 0px 0px 0.5rem 0.1rem var(--valkrill);
-  &:focus {
-    box-shadow: 1px 1px 1rem 0.3rem var(--valkrill);
-  }
+}
+.valkrill-frame:focus {
+  box-shadow: 1px 1px 1rem 0.3rem var(--valkrill);
 }
 .aquilla-frame {
   border: 1px solid var(--aquilla);
   box-shadow: inset 0px 0px 0.5rem 0.1rem var(--aquilla);
-  &:focus {
-    box-shadow: 1px 1px 1rem 0.3rem var(--aquilla);
-  }
+}
+.aquilla-frame:focus {
+  box-shadow: 1px 1px 1rem 0.3rem var(--aquilla);
 }
 
 .jandar-background-gradient {
@@ -97,7 +97,7 @@
     var(--aquillaDarkTransparent) 100%
   );
 }
-// LIGHT THEME GRADIENTS
+/* LIGHT THEME GRADIENTS */
 .jandar-background-gradient__light {
   background-image: linear-gradient(
     180deg,

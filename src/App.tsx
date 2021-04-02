@@ -10,7 +10,7 @@ import {
 import { NavBar, ModalDisplay, GalleryPage } from './components'
 import { SignUpForm, SignInForm, PasswordForgetForm } from './firebase'
 import { ROUTES } from './routes'
-import './scss/heroscapeFactionStyles.scss'
+import './css/heroscapeFactionStyles.css'
 
 const App = () => {
   return (
@@ -19,7 +19,6 @@ const App = () => {
         <ArmySelectContextProvider>
           <Router>
             <Layout>
-              
               <ModalDisplay />
               <Switch>
                 <Route exact path={ROUTES.MAINGALLERY}>

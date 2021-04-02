@@ -12,7 +12,7 @@ import {
 } from './firebase'
 import { UIContextProvider } from './hooks/useUIContext'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './scss/index.scss'
+import './css/index.css'
 
 const firebaseApp = new Firebase()
 
