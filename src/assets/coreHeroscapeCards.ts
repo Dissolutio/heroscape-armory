@@ -964,7 +964,7 @@ export const coreHeroscapeCards: ICoreHeroscapeCard[] = [
 		type: 'unique hero',
 		cardClass: 'beast',
 		personality: 'relentless',
-		height: 'medium 5',
+		height: 'huge 8',
 		life: '5',
 		move: '5',
 		range: '1',
