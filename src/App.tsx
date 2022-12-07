@@ -68,6 +68,7 @@ const StyledAppWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  overflow: hidden;
 `
 const StyledGalleryWrapper = styled.div`
   display: flex;
@@ -76,7 +77,7 @@ const StyledGalleryWrapper = styled.div`
   width: 100%;
   max-width: 600px;
   height: 100%;
-  max-height: 100vh;
+  /* max-height: 100vh; */
   margin: 0 auto;
 `
 export default App

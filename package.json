@@ -19,7 +19,6 @@
     "react-icons": "^3.10.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
-    "react-use-dimensions": "^1.2.1",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.6",
     "styled-components": "^5.1.0"
