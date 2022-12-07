@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import {
@@ -19,7 +20,6 @@ const App = () => {
         <ArmySelectContextProvider>
           <Router>
             <Layout>
-              
               <ModalDisplay />
               <Switch>
                 <Route exact path={ROUTES.MAINGALLERY}>
@@ -50,14 +50,33 @@ const App = () => {
 }
 
 const Layout = ({ children }) => {
-  const { darkMode } = useUIContext()
+  const { darkMode, darkModeBSClassNames } = useUIContext()
   const bgColor = () => (darkMode ? 'var(--black)' : 'var(--white)')
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: bgColor() }}>
+    <StyledAppWrapper style={{ backgroundColor: bgColor() }}>
       <NavBar />
-      {children}
-    </div>
+      <StyledGalleryWrapper
+        className={`${darkModeBSClassNames} text-center pt-1 pb-2 mt-0`}
+      >
+        {children}
+      </StyledGalleryWrapper>
+    </StyledAppWrapper>
   )
 }
-
+const StyledAppWrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`
+const StyledGalleryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  max-height: 100vh;
+  margin: 0 auto;
+`
 export default App

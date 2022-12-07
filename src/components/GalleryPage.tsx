@@ -1,25 +1,45 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container'
-import Jumbotron from 'react-bootstrap/Jumbotron'
+import { FixedSizeList as List } from 'react-window'
+import useDimensions from 'react-use-dimensions'
 
-import { useUIContext } from 'hooks'
+import { useDeckContext } from 'hooks/useDeckContext'
+import { GalleryCard } from './GalleryCard'
+
 import { DraftArmy } from './DraftArmy'
 import { SearchConsole } from './SearchConsole'
-import { ReactWindowFixedSizeList } from './ReactWindowFixedSizeList'
 
 export const GalleryPage = () => {
-  const { darkModeBSClassNames } = useUIContext()
+  const { filteredDeck } = useDeckContext()
+  const [ref, { height }] = useDimensions()
+
   return (
     <>
       <DraftArmy />
-      <Container style={{ maxWidth: '500px' }}>
-        <Jumbotron
-          className={`${darkModeBSClassNames} text-center pt-1 pb-2 mt-0`}
-        >
-          <SearchConsole />
-          <ReactWindowFixedSizeList />
-        </Jumbotron>
-      </Container>
+      <div>
+        <SearchConsole />
+      </div>
+      <div style={{ maxHeight: '100vh', minHeight: '70vh' }} ref={ref}>
+        {height && (
+          <List
+            height={height}
+            itemCount={filteredDeck.length}
+            itemSize={450}
+            itemData={filteredDeck}
+            width={'100%'}
+          >
+            {ListItemRenderer}
+          </List>
+        )}
+      </div>
     </>
+  )
+}
+
+const ListItemRenderer = ({ data, index, style }) => {
+  const card = data[index]
+  return (
+    <div style={style} className={`p-1`}>
+      {card && card?.name ? <GalleryCard card={card} /> : <div>Loading</div>}
+    </div>
   )
 }
