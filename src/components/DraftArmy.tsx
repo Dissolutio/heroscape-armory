@@ -15,7 +15,7 @@ export const DraftArmy = () => {
   const armyCost = army.reduce((prev, curr) => {
     const cardID = curr.cardID
     const card = deck.find((c) => c.cardID === cardID)
-    const cardPoints = parseInt(card.points)
+    const cardPoints = parseInt(card.points) * curr.count
     return prev + cardPoints
   }, 0)
   return (
