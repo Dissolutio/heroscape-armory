@@ -5341,7 +5341,7 @@ export const coreHeroscapeCards: ICoreHeroscapeCard[] = [
 		abilities: [
 			{
 				name: 'Hydra Heads',
-				desc: '',
+				desc: 'When this Fen Hydra attacks, it may attack up to 4 times. Reduce the number of times this Fen Hydra can attack by 1 for each wound marker on this Army Card.',
 			},
 			{
 				name: 'Reach',
