@@ -4864,7 +4864,7 @@ export const coreHeroscapeCards: ICoreHeroscapeCard[] = [
 		image: 'eliteonyxvipers.jpg',
 		portraitPattern: 'eliteonyxvipers-portrait',
 		general: 'ullar',
-		race: 'marro',
+		race: 'viper',
 		type: 'unique squad',
 		cardClass: 'scouts',
 		personality: 'precise',
