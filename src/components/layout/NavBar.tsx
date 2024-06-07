@@ -31,7 +31,7 @@ export const NavBar = () => {
                 variant={darkMode ? 'dark' : 'light'}
                 onClick={toggleDarkMode}
               >
-                Toggle Dark Mode
+                Toggle {darkMode ? 'Light' : 'Dark'} Mode
               </Button>
             </Nav.Item>
           </Nav>
