@@ -9,9 +9,37 @@ import {
   useUIContext,
 } from './hooks'
 import { NavBar, ModalDisplay, GalleryPage } from './components'
-import { SignUpForm, SignInForm, PasswordForgetForm } from './firebase'
+import {
+  Firebase,
+  FirebaseContext,
+  useFirebaseContext,
+  AuthUserContext,
+  useAuthListener,
+  SignUpForm,
+  SignInForm,
+  PasswordForgetForm,
+} from './firebase'
 import { ROUTES } from './routes'
 import './scss/heroscapeFactionStyles.scss'
+
+// if developing locally, with no api keys, we still want the app to load, and have done the minimal work to do so
+const firebaseApp = process.env.REACT_APP_FIRE_APIKEY ? new Firebase() : {}
+
+export const App2 = () => {
+  const firebaseApp = useFirebaseContext()
+  const authState = useAuthListener(firebaseApp)
+  return (
+    <FirebaseContext.Provider value={firebaseApp}>
+      <AuthUserContext.Provider value={authState}>
+        <UIContextProvider>
+          <Router>
+            <App />
+          </Router>
+        </UIContextProvider>
+      </AuthUserContext.Provider>
+    </FirebaseContext.Provider>
+  )
+}
 
 const App = () => {
   return (
