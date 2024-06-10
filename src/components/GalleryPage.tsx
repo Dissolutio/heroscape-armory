@@ -6,6 +6,7 @@ import { GalleryCard } from './GalleryCard'
 
 import { DraftArmy } from './DraftArmy'
 import { SearchConsole } from './SearchConsole'
+import { QuickCard } from './QuickCard'
 
 export const GalleryPage = () => {
   const { filteredDeck } = useDeckContext()
@@ -31,7 +32,7 @@ const ListItemRenderer = ({ data, index, style }) => {
   const card = data[index]
   return (
     <div style={style} className={`p-1`}>
-      {card && card?.name ? <GalleryCard card={card} /> : <div>Loading</div>}
+      {card && card?.name ? <QuickCard card={card} /> : <div>Loading</div>}
     </div>
   )
 }
