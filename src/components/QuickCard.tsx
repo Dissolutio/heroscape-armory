@@ -34,16 +34,20 @@ export const QuickCard = (props: { card: ICoreHeroscapeCard }) => {
 const CardGrid = styled.div`
   display: grid;
   width: 500px;
+  max-width: 99vw;
   height: 400px;
   grid-gap: 0.4rem;
   grid-template-columns: 1.5fr 2.5fr 2fr;
   grid-template-rows: 3fr 1fr 0.1fr 1fr 3fr;
   grid-template-areas:
-    '. main portrait'
-    'info main portrait'
+    '. main picture'
+    'info main picture'
     'info main .'
     'info main stats'
     '. main stats';
+  background-color: red;
+  background-image: radial-gradient(yellow, #f06d06);
+
   div {
     background-color: salmon;
     border: 2px s0olid black;
@@ -55,7 +59,7 @@ const CardGrid = styled.div`
     grid-area: main;
   }
   .portrait {
-    grid-area: portrait;
+    grid-area: picture;
   }
   .stats {
     grid-area: stats;
@@ -135,8 +139,11 @@ const Portrait = (props: { card: ICoreHeroscapeCard }) => {
   return (
     <>
       <img
+        style={{
+          width: '100%',
+          height: 'auto',
+        }}
         src={`/heroscape-portraits/${props.card.image}`}
-        className="text-center h-100"
       />
     </>
   )
