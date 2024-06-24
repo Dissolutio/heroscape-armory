@@ -31,6 +31,7 @@ export const QuickCard = (props: { card: ICoreHeroscapeCard }) => {
     </CardGrid>
   )
 }
+const points = `0% 40%, 16.666% 30%, 16.666% 10%, 33.333% 0%, 50% 10%, 66.666% 0%, 83.333% 10%, 83.333% 30%, 100% 40%, 100% 60%, 83.333% 70%, 83.333% 90%, 66.666% 100%, 50% 90%, 33.333% 100%, 16.666% 90%, 16.666% 70%, 0% 60%`
 const CardGrid = styled.div`
   display: grid;
   width: 500px;
@@ -47,7 +48,7 @@ const CardGrid = styled.div`
     '. main stats';
   background-color: red;
   background-image: radial-gradient(yellow, #f06d06);
-
+  clip-path: polygon(${points});
   div {
     background-color: salmon;
     border: 2px s0olid black;
